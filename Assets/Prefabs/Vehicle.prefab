@@ -159,5 +159,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.95
   speed: 1
-  turningSpeed: 10
+  turningSpeed: 30
   turningDirection: 0
