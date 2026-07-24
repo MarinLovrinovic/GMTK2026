@@ -9,15 +9,15 @@ public class Bomb : MonoBehaviour, IHittable
     public GameObject carryImage;
     public GameObject releaseImage;
 
-    [SerializeField] private LayerMask hittable;
-    [SerializeField] private float explosionRadius = 1;
-    [SerializeField] private float damage = 1;
-    [SerializeField] private GameObject explosionFX;
-    [SerializeField] private TMP_Text countdownText;
+    [SerializeField] protected LayerMask hittable;
+    [SerializeField] protected float explosionRadius = 1;
+    [SerializeField] protected float damage = 1;
+    [SerializeField] protected GameObject explosionFX;
+    [SerializeField] protected TMP_Text countdownText;
 
-    private float timeUntilExplosion = 5;
-    private bool explosionStarted = false;
-    private bool isFrozen;
+    protected float timeUntilExplosion = 5;
+    protected bool explosionStarted = false;
+    protected bool isFrozen;
 
     private void Start()
     {
@@ -34,7 +34,8 @@ public class Bomb : MonoBehaviour, IHittable
             countdownText.text = ((int)timeUntilExplosion + 1).ToString();
             if (timeUntilExplosion <= 0)
             {
-                Explode();
+                preExplosionLogic();
+                Explode(true);
             }
         }
     }
@@ -46,7 +47,7 @@ public class Bomb : MonoBehaviour, IHittable
         releaseImage.SetActive(release);
     }
 
-    private void Explode()
+    private void Explode(bool isSelfCaused)
     {
         // ensure only one explode call per bomb
         if (explosionStarted) return;
@@ -56,7 +57,7 @@ public class Bomb : MonoBehaviour, IHittable
         foreach (Collider hit in hits)
         {
             IHittable hittable = hit.GetComponent<IHittable>();
-            if (!ReferenceEquals(hittable, this)) explosionLogic(hittable);
+            if (!ReferenceEquals(hittable, this)) explosionLogic(hittable, isSelfCaused);
         }
         GameObject effect = Instantiate(explosionFX, transform.position, Quaternion.identity);
         float scale = 2.2f * explosionRadius;
@@ -72,7 +73,9 @@ public class Bomb : MonoBehaviour, IHittable
         isFrozen = false;
     }
 
-    protected virtual void explosionLogic(IHittable hittable)
+    protected virtual void preExplosionLogic() { }
+
+    protected virtual void explosionLogic(IHittable hittable, bool isSelfCaused)
     {
         hittable.Hit(damage);
     }
@@ -90,7 +93,7 @@ public class Bomb : MonoBehaviour, IHittable
 
     public void Hit(float damage)
     {
-        Explode();
+        Explode(false);
     }
 
     public void Freeze(float time)

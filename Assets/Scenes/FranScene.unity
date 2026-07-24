@@ -452,10 +452,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombs:
   - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
-  - {fileID: 2835289739386263845, guid: 5c75b72d1f4e1c54bbbe205a126c0137, type: 3}
+  - {fileID: 4169599846331921678, guid: 3f1bdf0e927b4c94e97d64c9080449e8, type: 3}
+  - {fileID: 2832341686369346766, guid: 6130dc6eac1b0c54b8945724ecd5a694, type: 3}
   weightedProbabilities:
-  - 50
-  - 50
+  - 1
+  - 0.3
+  - 0.1
 --- !u!1 &880874647
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +799,8 @@ MonoBehaviour:
   movable:
     serializedVersion: 2
     m_Bits: 64
+  radiusPrefab: {fileID: 8570552270147040349, guid: b0e534be32eb86845bb6bbab34b650db, type: 3}
+  radius: 1.5
 --- !u!1 &1322465180
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +846,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicle: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+--- !u!1 &1866594269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866594270}
+  m_Layer: 0
+  m_Name: BombRadiusDisplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1866594270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866594269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.09979, y: -0, z: 0.11815}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2087632954
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,3 +936,4 @@ SceneRoots:
   - {fileID: 925884578}
   - {fileID: 1103301220}
   - {fileID: 2087632955}
+  - {fileID: 1866594270}
