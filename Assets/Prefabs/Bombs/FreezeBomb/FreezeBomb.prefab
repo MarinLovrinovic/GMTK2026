@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Bits: 72
   explosionRadius: 1.5
   damage: 1
-  explosionFX: {fileID: 6572796745621076514, guid: dd67c18fdd70051439cf34da244b3a10, type: 3}
+  explosionFX: {fileID: 5701642831870229703, guid: cef96a6fe485b9240822127867bdd211, type: 3}
   countdownText: {fileID: 6073500500390573388}
   freezeTime: 5
 --- !u!135 &6366057458498639122

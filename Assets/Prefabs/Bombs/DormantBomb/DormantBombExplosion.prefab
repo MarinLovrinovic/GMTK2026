@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3232619556152151793
+--- !u!1 &3399629978008840152
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8466280892256242064}
-  - component: {fileID: 4006587878929980406}
-  - component: {fileID: 3626579014398328181}
-  - component: {fileID: 5365303616558125029}
+  - component: {fileID: 8969645926902233143}
+  - component: {fileID: 4805199465088029278}
+  - component: {fileID: 9187849868650007489}
+  - component: {fileID: 1147668837325361147}
   m_Layer: 0
   m_Name: ExplosionGraphics
   m_TagString: Untagged
@@ -19,29 +19,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8466280892256242064
+--- !u!4 &8969645926902233143
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232619556152151793}
+  m_GameObject: {fileID: 3399629978008840152}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7459798139764393300}
+  m_Father: {fileID: 5068440327641299805}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4006587878929980406
+--- !u!95 &4805199465088029278
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232619556152151793}
+  m_GameObject: {fileID: 3399629978008840152}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 749281cb94f070443bdf125488155d3e, type: 2}
@@ -56,21 +56,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!33 &3626579014398328181
+--- !u!33 &9187849868650007489
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232619556152151793}
+  m_GameObject: {fileID: 3399629978008840152}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5365303616558125029
+--- !u!23 &1147668837325361147
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3232619556152151793}
+  m_GameObject: {fileID: 3399629978008840152}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -113,7 +113,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5701642831870229703
+--- !u!1 &7460413530766787299
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,40 +121,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7459798139764393300}
-  - component: {fileID: 2721399458230090456}
+  - component: {fileID: 5068440327641299805}
+  - component: {fileID: 7839861047567865653}
   m_Layer: 0
-  m_Name: FreezeBombExplosion
+  m_Name: DormantBombExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7459798139764393300
+--- !u!4 &5068440327641299805
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5701642831870229703}
+  m_GameObject: {fileID: 7460413530766787299}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.92669, y: 0, z: -4.25473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8466280892256242064}
+  - {fileID: 8969645926902233143}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2721399458230090456
+--- !u!114 &7839861047567865653
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5701642831870229703}
+  m_GameObject: {fileID: 7460413530766787299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0cc2926acd0d1b41b195725c4c7c229, type: 3}
+  m_Script: {fileID: 11500000, guid: 549e5fcd41522fa4c81659e1ba62a33e, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FreezeExplosion
+  m_EditorClassIdentifier: Assembly-CSharp::DormantExplosion
