@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IHittable
@@ -7,16 +8,39 @@ public class Vehicle : MonoBehaviour, IHittable
     public float radius = 1;
     public float speed = 1;
     public Vector2 Position => transform.position.xz();
+
+    private bool isFrozen;
+
+    private void Start()
+    {
+        isFrozen = false;
+    }
+
     private void FixedUpdate()
     {
-        // Move
-        transform.position += velocity.xoy() * Time.fixedDeltaTime;
-        // Rotate towards movement
-        transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
+        if (!isFrozen)
+        {
+            // Move
+            transform.position += velocity.xoy() * Time.fixedDeltaTime;
+            // Rotate towards movement
+            transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
+        }
+    }
+
+    private IEnumerator waitFrozen(float time)
+    {
+        isFrozen = true;
+        yield return new WaitForSecondsRealtime(time);
+        isFrozen = false;
     }
 
     public void Hit(float damage)
     {
         Destroy(gameObject);
+    }
+
+    public void Freeze(float time)
+    {
+        StartCoroutine(waitFrozen(time));
     }
 }

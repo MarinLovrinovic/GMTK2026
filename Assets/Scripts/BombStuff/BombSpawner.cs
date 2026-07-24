@@ -3,7 +3,8 @@
 public class BombSpawner : MonoBehaviour
 {
     private float totalTimer = 0;
-    [SerializeField] private Bomb bomb;
+    [SerializeField] private Bomb[] bombs;
+    [SerializeField] private float[] weightedProbabilities;
     private float timeUntilNextBomb = 2;
     private void Update()
     {
@@ -12,7 +13,8 @@ public class BombSpawner : MonoBehaviour
         if (timeUntilNextBomb <= 0)
         {
             Vector2 location = new Vector2(Random.Range(-7f, 7f), Random.Range(-3.5f, 3.5f)) * Scaler.Scale;
-            Instantiate(bomb, location.xoy() + Vector3.up * 0.5f, Quaternion.identity);
+            Bomb bombType = MathHelper.WeightedRandomFromDistributionArray<Bomb>(bombs, weightedProbabilities);
+            Instantiate(bombType, location.xoy(), Quaternion.identity);
             
             timeUntilNextBomb = Random.Range(1f, 1f + Mathf.Min(6, 60 / totalTimer));
         }
