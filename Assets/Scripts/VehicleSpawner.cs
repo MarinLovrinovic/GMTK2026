@@ -1,23 +1,63 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class VehicleSpawner : MonoBehaviour
 {
     [SerializeField] private Vehicle vehicle;
     private float timeUntilNextVehicle = 1;
+    private List<Vehicle> vehicles = new();
+    
     private void Update()
     {
+        vehicles.RemoveAll(v =>
+        {
+            if (!v) return true;
+            
+            Vector2 pos = v.Position;
+            if (Mathf.Abs(pos.x) > 10 * Scaler.Scale || Mathf.Abs(pos.y) > 6 * Scaler.Scale) // vehicle out of bounds
+            {
+                Destroy(gameObject);
+                return true;
+            }
+            return false;
+        });
+        
         timeUntilNextVehicle -= Time.deltaTime;
         if (timeUntilNextVehicle <= 0)
         {
-            
-            Vector2 location = GetInitialVehicleLocation();
-            Vector2 velocity = -location.normalized.RandomVectorDeviation(40);
-            
-            Vehicle newVehicle = Instantiate(vehicle, location.xoy(), velocity.Vector2ToQuaternion());
-            newVehicle.velocity = velocity;
-            
+            SpawnVehicle();
             timeUntilNextVehicle = Random.Range(0.2f, 2f);
         }
+    }
+
+    private void SpawnVehicle()
+    {
+        Vector2 newVehiclePosition = GetInitialVehicleLocation();
+            
+        Vehicle newVehicle = Instantiate(vehicle, GetInitialVehicleLocation().xoy(), Quaternion.identity);
+
+        Vector2 velocity = -newVehicle.Position.normalized.RandomVectorDeviation(40) * newVehicle.speed;
+        float angleIncrement = 2;
+        for (int i = 0; i < 50; i++) // try to find a direction that will not collide with any other ships 
+        {
+            bool anyCollisions = false;
+            foreach (Vehicle otherVehicle in vehicles)
+            {
+                anyCollisions |= MathHelper.MovingCirclesIntersect(
+                    newVehiclePosition, velocity, newVehicle.radius,
+                    otherVehicle.Position, otherVehicle.velocity, otherVehicle.radius);
+            }
+            if (!anyCollisions)
+                break;
+            velocity.RotateVector2ByDegrees(angleIncrement);
+            angleIncrement = -(angleIncrement + Mathf.Sign(angleIncrement) * 2);
+            if (i == 24)
+                Debug.Log("failed to find path");
+        }
+        newVehicle.velocity = velocity;
+
+        vehicles.Add(newVehicle);
     }
 
     private Vector2 GetInitialVehicleLocation()
