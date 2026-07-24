@@ -1,30 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Bomb : MonoBehaviour, IHittable
 {
+    public bool Moved { get; private set; } = false;
+    public GameObject initialImage;
+    public GameObject carryImage;
+    public GameObject releaseImage;
+
     [SerializeField] private LayerMask hittable;
     [SerializeField] private float explosionRadius = 1;
     [SerializeField] private float damage = 1;
-    private float timeUntilExplosion = 5;
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private TMP_Text countdownText;
     [SerializeField] private Color movedColor;
-    private bool explosionStarted = false;
-    public bool Moved { get; private set; } = false;
 
-    public void Move()
-    {
-        Moved = true;
-        GetComponent<SpriteRenderer>().color = movedColor;
-    }
+    private float timeUntilExplosion = 5;
+    private bool explosionStarted = false;
 
     private void Start()
     {
         timeUntilExplosion = Random.Range(4, 13);
+        imageControl(true, false, false);
     }
 
     void Update()
@@ -35,6 +33,13 @@ public class Bomb : MonoBehaviour, IHittable
         {
             Explode();
         }
+    }
+
+    private void imageControl(bool initial, bool carry, bool release)
+    {
+        initialImage.SetActive(initial);
+        carryImage.SetActive(carry);
+        releaseImage.SetActive(release);
     }
 
     private void Explode()
@@ -56,6 +61,17 @@ public class Bomb : MonoBehaviour, IHittable
         effect.transform.localScale = new Vector3(scale, scale, scale);
         
         Destroy(gameObject);
+    }
+
+    public void Move()
+    {
+        Moved = true;
+        imageControl(false, true, false);
+    }
+
+    public void Release()
+    {
+        imageControl(false, false, true);
     }
 
     public void Hit(float damage)
