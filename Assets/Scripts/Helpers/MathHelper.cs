@@ -174,7 +174,7 @@ public static class MathHelper
         return Random.Range(min + index * step, min + index * step + step);
     }
 
-    public static bool RandomBool(float probabilityOfTrue)
+    public static bool RandomBool(float probabilityOfTrue = 0.5f)
     {
         if (probabilityOfTrue == 0f)
             return false;

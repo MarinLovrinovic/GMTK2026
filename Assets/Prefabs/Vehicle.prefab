@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 609355837293801189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9403837, y: 0.5327735, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -157,4 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b68941fe64aca9862eeee0c4346a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 1, y: 1}
+  radius: 0.95
+  speed: 1
+  turningSpeed: 10
+  turningDirection: 0

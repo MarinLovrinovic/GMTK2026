@@ -7,6 +7,8 @@ public class Vehicle : MonoBehaviour, IHittable
     [NonSerialized] public Vector2 velocity = new(1, 1);
     public float radius = 1;
     public float speed = 1;
+    public float turningSpeed = 5; // degrees per second
+    public int turningDirection = 0; // -1 is left, 1 is right, 0 is no turn
     public Vector2 Position => transform.position.xz();
 
     private bool isFrozen;
