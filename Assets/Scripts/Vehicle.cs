@@ -1,9 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IHittable
 {
-    public Vector2 velocity = new(1, 1);
+    [NonSerialized] public Vector2 velocity = new(1, 1);
+    public float radius = 1;
+    public float speed = 1;
+    public Vector2 Position => transform.position.xz();
 
     private bool isFrozen;
 
@@ -14,19 +18,12 @@ public class Vehicle : MonoBehaviour, IHittable
 
     private void FixedUpdate()
     {
-
         if (!isFrozen)
         {
             // Move
             transform.position += velocity.xoy() * Time.fixedDeltaTime;
             // Rotate towards movement
-            transform.LookAt(transform.position + new Vector3(velocity.x, 0f, velocity.y), Vector3.up);
-        }
-
-        // Destroy when out of bounds
-        if (Mathf.Abs(transform.position.x) > 10 * Scaler.Scale || Mathf.Abs(transform.position.y) > 6 * Scaler.Scale)
-        {
-            Destroy(gameObject);    
+            transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
         }
     }
 
