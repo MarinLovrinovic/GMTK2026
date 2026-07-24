@@ -5,15 +5,20 @@ public class BombMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask movable;
 
+    public GameObject radiusPrefab;
+    public float radius;
+
     private Bomb carrying;
     private Plane dragPlane;
     private float bombY;
+    private GameObject displayedRadius;
 
     private void Start()
     {
         carrying = null;
         dragPlane = new Plane();
         bombY = 0.0f;
+        displayedRadius = null;
     }
 
     private void Update()
@@ -39,20 +44,36 @@ public class BombMovement : MonoBehaviour
         }
         else // not carrying
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, movable))
             {
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, movable))
-                {
-                    Bomb bomb = hit.collider.GetComponent<Bomb>();
+                Bomb bomb = hit.collider.GetComponent<Bomb>();
 
+                if (Mouse.current.leftButton.wasPressedThisFrame)
+                {
                     if (bomb != null && !bomb.Moved)
                     {
                         bomb.Move();
                         carrying = bomb;
                         bombY = bomb.transform.position.y;
                         dragPlane = new Plane(Vector3.up, bombY);
+
+                        Destroy(displayedRadius);
+                        displayedRadius = null;
                     }
                 }
+                else
+                {
+                    if (bomb != null && displayedRadius == null)
+                    {
+                        displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
+                        displayedRadius.transform.localScale *= radius;
+                    }
+                }
+            }
+            else
+            {
+                Destroy(displayedRadius);
+                displayedRadius = null;
             }
         }
     }
