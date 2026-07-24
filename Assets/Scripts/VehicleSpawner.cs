@@ -13,7 +13,7 @@ public class VehicleSpawner : MonoBehaviour
             Vector2 location = GetInitialVehicleLocation();
             Vector2 velocity = -location.normalized.RandomVectorDeviation(40);
             
-            Vehicle newVehicle = Instantiate(vehicle, location.xyo(), velocity.Vector2ToQuaternion());
+            Vehicle newVehicle = Instantiate(vehicle, location.xoy(), velocity.Vector2ToQuaternion());
             newVehicle.velocity = velocity;
             
             timeUntilNextVehicle = Random.Range(0.2f, 2f);

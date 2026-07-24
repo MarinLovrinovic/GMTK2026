@@ -12,7 +12,7 @@ public class BombSpawner : MonoBehaviour
         if (timeUntilNextBomb <= 0)
         {
             Vector2 location = new Vector2(Random.Range(-7f, 7f), Random.Range(-3.5f, 3.5f)) * Scaler.Scale;
-            Instantiate(bomb, location.xyo(), Quaternion.identity);
+            Instantiate(bomb, location.xoy() + Vector3.up * 0.5f, Quaternion.identity);
             
             timeUntilNextBomb = Random.Range(1f, 1f + Mathf.Min(6, 60 / totalTimer));
         }
