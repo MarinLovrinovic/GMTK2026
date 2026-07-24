@@ -4,16 +4,36 @@ using UnityEngine.InputSystem;
 public class BombMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask movable;
+
     private Bomb carrying;
+    private Plane dragPlane;
+    private float bombY;
+
+    private void Start()
+    {
+        carrying = null;
+        dragPlane = new Plane();
+        bombY = 0.0f;
+    }
+
     private void Update()
     {
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        if (Mouse.current == null || Camera.main == null) return;
+
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         if (carrying)
         {
-            carrying.transform.position = mouseWorldPos;
+            if (dragPlane.Raycast(ray, out float distance))
+            {
+                Vector3 mouseWorldPos = ray.GetPoint(distance);
+                mouseWorldPos.y = bombY;
+                carrying.transform.position = mouseWorldPos;
+            }
+
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
+                carrying.Release();
                 carrying = null;
             }
         }
@@ -21,16 +41,19 @@ public class BombMovement : MonoBehaviour
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                Collider2D[] bombs = Physics2D.OverlapPointAll(mouseWorldPos, movable);
-                foreach (Collider2D bombCollider in bombs)
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, movable))
                 {
-                    Bomb bomb = bombCollider.GetComponent<Bomb>();
-                    if (bomb.Moved) continue;
-                    bomb.Move();
-                    carrying = bomb;
-                    break;
+                    Bomb bomb = hit.collider.GetComponent<Bomb>();
+
+                    if (bomb != null && !bomb.Moved)
+                    {
+                        bomb.Move();
+                        carrying = bomb;
+                        bombY = bomb.transform.position.y;
+                        dragPlane = new Plane(Vector3.up, bombY);
+                    }
                 }
-            }    
+            }
         }
     }
 }
