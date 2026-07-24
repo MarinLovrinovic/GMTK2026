@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class VehicleSpawner : MonoBehaviour
@@ -26,12 +24,12 @@ public class VehicleSpawner : MonoBehaviour
 
         foreach (Vehicle vehicle in vehicles)
         {
-            float timeUntilCollision = TimeUntilCollision(vehicle.Position, vehicle.velocity, vehicle.radius, vehicle);
-            if (timeUntilCollision < 2.5f)
+            (float timeUntilCollision, Vehicle offendingVehicle) = TimeUntilCollision(vehicle.Position, vehicle.velocity, vehicle.radius, vehicle);
+            if (timeUntilCollision < 2f)
             {
                 if (vehicle.turningDirection == 0)
                 {
-                    vehicle.turningDirection = MathHelper.RandomBool() ? 1 : -1;
+                    vehicle.turningDirection = CalculateTurnDirection(vehicle.Position, vehicle.velocity, offendingVehicle.Position);
                 }
                 vehicle.velocity = vehicle.velocity.RotateVector2ByDegrees(vehicle.turningDirection * vehicle.turningSpeed * Time.deltaTime);
             }
@@ -81,19 +79,31 @@ public class VehicleSpawner : MonoBehaviour
 
         vehicles.Add(newVehicle);
     }
+
+    private float CalculateTurnDirection(Vector2 position, Vector2 velocity, Vector2 obstaclePosition)
+    {
+        Vector2 toObstacle = obstaclePosition - position;
+        return Mathf.Sign(Vector2.SignedAngle(toObstacle, velocity));
+    }
     
-    private float TimeUntilCollision(Vector2 position, Vector2 velocity, float radius, Vehicle ignore = null)
+    private (float time, Vehicle vehicle) TimeUntilCollision(Vector2 position, Vector2 velocity, float radius, Vehicle ignore = null)
     {
         float minTimeUntilCollision = Mathf.Infinity;
+        Vehicle offendingVehicle = null;
         foreach (Vehicle otherVehicle in vehicles)
         {
             if (ignore == otherVehicle) continue;
-            
-            minTimeUntilCollision = Mathf.Min(minTimeUntilCollision, MathHelper.MovingCirclesCollisionTime(
+
+            float timeUntilCollision = MathHelper.MovingCirclesCollisionTime(
                 position, velocity, radius,
-                otherVehicle.Position, otherVehicle.velocity, otherVehicle.radius));
+                otherVehicle.Position, otherVehicle.velocity, otherVehicle.radius);
+            if (timeUntilCollision < minTimeUntilCollision)
+            {
+                minTimeUntilCollision = timeUntilCollision;
+                offendingVehicle = otherVehicle;
+            }
         }
-        return minTimeUntilCollision;
+        return (minTimeUntilCollision, offendingVehicle);
     }
     
     private bool CollisionOnPath(Vector2 position, Vector2 velocity, float radius, Vehicle ignore = null)
@@ -143,52 +153,4 @@ public class VehicleSpawner : MonoBehaviour
         normal = Vector2.right;
         return position;
     }
-    
-    // private void SpawnVehicle()
-    // {
-    //     Vector2 newVehiclePosition = GetInitialVehicleLocation(out Vector2 normal);
-    //         
-    //     Vehicle newVehicle = Instantiate(vehicle, newVehiclePosition.xoy(), Quaternion.identity);
-    //
-    //     int randomDeviationAngle = Random.Range(-80, 80);
-    //     
-    //     Vector2? velocity = normal.RotateVector2ByDegrees(randomDeviationAngle) * newVehicle.speed;
-    //     
-    //     if (CollisionOnPath(newVehiclePosition, velocity.Value, newVehicle.radius))
-    //     {
-    //         if (randomDeviationAngle >= 0)
-    //         {
-    //             velocity = SearchPath(newVehiclePosition,  newVehicle.radius, newVehicle.speed,  normal, randomDeviationAngle, -1)
-    //                        ?? SearchPath(newVehiclePosition,  newVehicle.radius, newVehicle.speed, normal, randomDeviationAngle, 1);
-    //         }
-    //         else
-    //         {
-    //             velocity = SearchPath(newVehiclePosition,  newVehicle.radius, newVehicle.speed, normal, randomDeviationAngle, 1)
-    //                        ?? SearchPath(newVehiclePosition,  newVehicle.radius, newVehicle.speed,  normal, randomDeviationAngle, -1);
-    //         }
-    //
-    //         if (!velocity.HasValue)
-    //         {
-    //             Debug.Log("failed to find path");
-    //         }
-    //     }
-    //     
-    //     newVehicle.velocity = velocity ?? normal;
-    //
-    //     vehicles.Add(newVehicle);
-    // }
-    //
-    // private Vector2? SearchPath(Vector2 vehiclePosition, float vehicleRadius, float vehicleSpeed,
-    //     Vector2 normal, int startingDeviationAngle, int step)
-    // {
-    //     for (int angle = startingDeviationAngle; step < 0 ? -85 < angle : angle < 85 ; angle += step)
-    //     {
-    //         Vector2 velocity = normal.RotateVector2ByDegrees(angle) * vehicleSpeed;
-    //         if (!CollisionOnPath(vehiclePosition, velocity, vehicleRadius))
-    //         {
-    //             return velocity;
-    //         }
-    //     }
-    //     return null;
-    // }
 }

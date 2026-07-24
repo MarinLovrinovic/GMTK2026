@@ -8,7 +8,7 @@ public class Vehicle : MonoBehaviour, IHittable
     public float radius = 1;
     public float speed = 1;
     public float turningSpeed = 5; // degrees per second
-    public int turningDirection = 0; // -1 is left, 1 is right, 0 is no turn
+    public float turningDirection = 0; // -1 is left, 1 is right, 0 is no turn
     public Vector2 Position => transform.position.xz();
 
     private bool isFrozen;
@@ -32,7 +32,10 @@ public class Vehicle : MonoBehaviour, IHittable
     private IEnumerator waitFrozen(float time)
     {
         isFrozen = true;
+        Vector2 previousVelocity = velocity;
+        velocity = Vector2.zero;
         yield return new WaitForSecondsRealtime(time);
+        velocity = previousVelocity;
         isFrozen = false;
     }
 
@@ -43,6 +46,7 @@ public class Vehicle : MonoBehaviour, IHittable
 
     public void Freeze(float time)
     {
+        if (isFrozen) return;
         StartCoroutine(waitFrozen(time));
     }
 }

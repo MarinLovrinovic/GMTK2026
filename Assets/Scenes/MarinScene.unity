@@ -880,7 +880,7 @@ MonoBehaviour:
   - {fileID: 2832341686369346766, guid: 6130dc6eac1b0c54b8945724ecd5a694, type: 3}
   weightedProbabilities:
   - 1
-  - 0.3
+  - 2
   - 0.1
 --- !u!114 &2087632958
 MonoBehaviour:
