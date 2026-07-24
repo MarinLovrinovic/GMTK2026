@@ -52,10 +52,12 @@ MonoBehaviour:
   hittable:
     serializedVersion: 2
     m_Bits: 72
-  explosionRadius: 0
+  explosionRadius: 1
   damage: 1
   explosionFX: {fileID: 7340234503719572701, guid: 99b81f053b20ec44680133f0d2729fc0, type: 3}
   countdownText: {fileID: 7908520365297330755}
+  minTime: 10
+  maxTime: 20
   finalExplosionRadius: 10
 --- !u!135 &2065276559320124036
 SphereCollider:

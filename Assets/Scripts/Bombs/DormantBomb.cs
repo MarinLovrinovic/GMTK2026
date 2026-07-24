@@ -8,9 +8,4 @@ public class DormantBomb : Bomb
     {
         explosionRadius = finalExplosionRadius;
     }
-
-    protected override void explosionLogic(IHittable hittable, bool isSelfCaused)
-    {
-        if (!isSelfCaused) hittable.Hit(damage);
-    }
 }

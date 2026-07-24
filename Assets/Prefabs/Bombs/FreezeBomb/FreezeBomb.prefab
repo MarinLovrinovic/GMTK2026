@@ -56,6 +56,8 @@ MonoBehaviour:
   damage: 1
   explosionFX: {fileID: 5701642831870229703, guid: cef96a6fe485b9240822127867bdd211, type: 3}
   countdownText: {fileID: 6073500500390573388}
+  minTime: 4
+  maxTime: 14
   freezeTime: 5
 --- !u!135 &6366057458498639122
 SphereCollider:

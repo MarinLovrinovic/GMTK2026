@@ -6,12 +6,12 @@ public class BombMovement : MonoBehaviour
     [SerializeField] private LayerMask movable;
 
     public GameObject radiusPrefab;
-    public float radius;
 
     private Bomb carrying;
     private Plane dragPlane;
     private float bombY;
     private GameObject displayedRadius;
+    private float radiusRadius;
 
     private void Start()
     {
@@ -47,6 +47,11 @@ public class BombMovement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, movable))
             {
                 Bomb bomb = hit.collider.GetComponent<Bomb>();
+                if (bomb != null && displayedRadius != null)
+                {
+                    radiusRadius = bomb.getExplosionRadius() * 2.2f;
+                    displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
+                }
 
                 if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
@@ -66,7 +71,8 @@ public class BombMovement : MonoBehaviour
                     if (bomb != null && displayedRadius == null)
                     {
                         displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
-                        displayedRadius.transform.localScale *= radius;
+                        radiusRadius = bomb.getExplosionRadius() * 2.2f;
+                        displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
                     }
                 }
             }

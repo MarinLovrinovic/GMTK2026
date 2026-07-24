@@ -14,29 +14,43 @@ public class Bomb : MonoBehaviour, IHittable
     [SerializeField] protected float damage = 1;
     [SerializeField] protected GameObject explosionFX;
     [SerializeField] protected TMP_Text countdownText;
+    [SerializeField] protected int minTime;
+    [SerializeField] protected int maxTime;
 
-    protected float timeUntilExplosion = 5;
+    protected int timeUntilExplosion = 5;
     protected bool explosionStarted = false;
     protected bool isFrozen;
 
     private void Start()
     {
-        timeUntilExplosion = Random.Range(4, 13);
+        timeUntilExplosion = Random.Range(minTime, maxTime);
+        countdownText.text = (timeUntilExplosion).ToString();
         imageControl(true, false, false);
         isFrozen = false;
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (!isFrozen)
+        TickDriver.instance.OnTick += Tick;
+    }
+
+    private void OnDisable()
+    {
+        TickDriver.instance.OnTick -= Tick;
+    }
+
+    void Tick()
+    {
+        if (isFrozen) return;
+
+        timeUntilExplosion -= 1;
+        countdownText.text = (timeUntilExplosion).ToString();
+        perTickLogic();
+
+        if (timeUntilExplosion <= 0)
         {
-            timeUntilExplosion -= Time.deltaTime;
-            countdownText.text = ((int)timeUntilExplosion + 1).ToString();
-            if (timeUntilExplosion <= 0)
-            {
-                preExplosionLogic();
-                Explode(true);
-            }
+            preExplosionLogic();
+            Explode(true);
         }
     }
 
@@ -73,6 +87,8 @@ public class Bomb : MonoBehaviour, IHittable
         isFrozen = false;
     }
 
+    protected virtual void perTickLogic() { }
+
     protected virtual void preExplosionLogic() { }
 
     protected virtual void explosionLogic(IHittable hittable, bool isSelfCaused)
@@ -99,5 +115,10 @@ public class Bomb : MonoBehaviour, IHittable
     public void Freeze(float time)
     {
         StartCoroutine(waitFrozen(time));
+    }
+
+    public float getExplosionRadius()
+    {
+        return explosionRadius;
     }
 }
