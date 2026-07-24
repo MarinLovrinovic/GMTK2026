@@ -1,4 +1,5 @@
 using TMPro;
+using System.Collections;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour, IHittable
@@ -11,26 +12,30 @@ public class Bomb : MonoBehaviour, IHittable
     [SerializeField] private LayerMask hittable;
     [SerializeField] private float explosionRadius = 1;
     [SerializeField] private float damage = 1;
-    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private GameObject explosionFX;
     [SerializeField] private TMP_Text countdownText;
-    [SerializeField] private Color movedColor;
 
     private float timeUntilExplosion = 5;
     private bool explosionStarted = false;
+    private bool isFrozen;
 
     private void Start()
     {
         timeUntilExplosion = Random.Range(4, 13);
         imageControl(true, false, false);
+        isFrozen = false;
     }
 
     void Update()
     {
-        timeUntilExplosion -= Time.deltaTime;
-        countdownText.text = ((int) timeUntilExplosion + 1).ToString();
-        if (timeUntilExplosion <= 0)
+        if (!isFrozen)
         {
-            Explode();
+            timeUntilExplosion -= Time.deltaTime;
+            countdownText.text = ((int)timeUntilExplosion + 1).ToString();
+            if (timeUntilExplosion <= 0)
+            {
+                Explode();
+            }
         }
     }
 
@@ -51,15 +56,25 @@ public class Bomb : MonoBehaviour, IHittable
         foreach (Collider hit in hits)
         {
             IHittable hittable = hit.GetComponent<IHittable>();
-            if (ReferenceEquals(hittable, this))
-                continue;
-            hittable.Hit(damage);
+            if (!ReferenceEquals(hittable, this)) explosionLogic(hittable);
         }
-        GameObject effect = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        GameObject effect = Instantiate(explosionFX, transform.position, Quaternion.identity);
         float scale = 2.2f * explosionRadius;
         effect.transform.localScale = new Vector3(scale, scale, scale);
         
         Destroy(gameObject);
+    }
+
+    private IEnumerator waitFrozen(float time)
+    {
+        isFrozen = true;
+        yield return new WaitForSeconds(time);
+        isFrozen = false;
+    }
+
+    protected virtual void explosionLogic(IHittable hittable)
+    {
+        hittable.Hit(damage);
     }
 
     public void Move()
@@ -76,5 +91,10 @@ public class Bomb : MonoBehaviour, IHittable
     public void Hit(float damage)
     {
         Explode();
+    }
+
+    public void Freeze(float time)
+    {
+        StartCoroutine(waitFrozen(time));
     }
 }

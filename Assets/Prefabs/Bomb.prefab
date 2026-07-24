@@ -54,9 +54,8 @@ MonoBehaviour:
     m_Bits: 72
   explosionRadius: 1.5
   damage: 1
-  explosionEffect: {fileID: 7539690774679835418, guid: e44760be987f93449964c73d6452a865, type: 3}
+  explosionFX: {fileID: 7539690774679835418, guid: e44760be987f93449964c73d6452a865, type: 3}
   countdownText: {fileID: 3711329516763058054}
-  movedColor: {r: 0.15244566, g: 0.23018861, b: 0.17838068, a: 1}
 --- !u!135 &4883783462364560647
 SphereCollider:
   m_ObjectHideFlags: 0
