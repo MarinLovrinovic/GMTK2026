@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BombMovement : MonoBehaviour
 {
@@ -7,18 +7,19 @@ public class BombMovement : MonoBehaviour
     private Bomb carrying;
     private void Update()
     {
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
         if (carrying)
         {
             carrying.transform.position = mouseWorldPos;
-            if (Input.GetMouseButtonUp(0))
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 carrying = null;
             }
         }
         else // not carrying
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Collider2D[] bombs = Physics2D.OverlapPointAll(mouseWorldPos, movable);
                 foreach (Collider2D bombCollider in bombs)
