@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Bomb : MonoBehaviour, IHittable
 {
@@ -48,8 +47,8 @@ public class Bomb : MonoBehaviour, IHittable
         if (explosionStarted) return;
         explosionStarted = true;
         
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position.xy(), explosionRadius, hittable);
-        foreach (Collider2D hit in hits)
+        Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius, hittable);
+        foreach (Collider hit in hits)
         {
             IHittable hittable = hit.GetComponent<IHittable>();
             if (ReferenceEquals(hittable, this))
