@@ -6,6 +6,7 @@ public class BombMovement : MonoBehaviour
     [SerializeField] private LayerMask movable;
 
     public GameObject radiusPrefab;
+    [SerializeField] private bool radiusIs2D;
 
     private Bomb carrying;
     private Plane dragPlane;
@@ -72,7 +73,14 @@ public class BombMovement : MonoBehaviour
                     {
                         displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
                         radiusRadius = bomb.getExplosionRadius() * 2.2f;
-                        displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
+                        if (radiusIs2D)
+                        {
+                            displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius);
+                        }
+                        else
+                        {
+                            displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
+                        }
                     }
                 }
             }

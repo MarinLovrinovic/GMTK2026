@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4873839624403768476}
   - component: {fileID: 365590980006659015}
   m_Layer: 0
-  m_Name: ExplosionGraphics
+  m_Name: HoverGraphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

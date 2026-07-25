@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMapBounds : MonoBehaviour
 {
     private Camera camera;
-    [SerializeField] private GameObject waterPlane;
+    [SerializeField] private GameObject waterGO;
 
     public static Vector2 boundsMin { get; private set; }
     public static Vector2 boundsMax { get; private set; }
@@ -18,10 +18,11 @@ public class CameraMapBounds : MonoBehaviour
     {
         camera = GetComponent<Camera>();
         boundsVisualGO.SetActive(false);
+        boundsVisualGO.transform.rotation = Quaternion.identity;
     }
     private void Start()
     {
-        CalculateBounds();
+        CalculateBoundsRaycast();
         if (visualizeOnStart) { VisualizeBounds(boundsMin, boundsMax); }
     }
 
@@ -29,7 +30,7 @@ public class CameraMapBounds : MonoBehaviour
 
     void CalculateBounds()
     {
-        float distance = Mathf.Abs(transform.position.y - waterPlane.transform.position.y);
+        float distance = Mathf.Abs(transform.position.y - waterGO.transform.position.y);
 
         float visibleHeight = 2f * distance *
                       Mathf.Tan(camera.fieldOfView * Mathf.Deg2Rad * 0.5f);
@@ -44,12 +45,45 @@ public class CameraMapBounds : MonoBehaviour
         boundsMin = center + new Vector2(-visibleWidth / 2f, -visibleHeight / 2f);
         boundsMax = center + new Vector2(visibleWidth / 2f, visibleHeight / 2f);
     }
+    void CalculateBoundsRaycast()
+    {
+        Plane waterPlane = new Plane(waterGO.transform.up, waterGO.transform.position);
+
+        Vector3[] viewportCorners =
+        {
+            new Vector3(0, 0, 0), // bottom-left
+            new Vector3(1, 0, 0), // bottom-right
+            new Vector3(0, 1, 0), // top-left
+            new Vector3(1, 1, 0)  // top-right
+        };
+
+        Vector3 min = Vector3.one * float.MaxValue;
+        Vector3 max = Vector3.one * float.MinValue;
+
+        foreach (Vector3 corner in viewportCorners)
+        {
+            Ray ray = camera.ViewportPointToRay(corner);
+
+            if (waterPlane.Raycast(ray, out float distance))
+            {
+                Vector3 worldPoint = ray.GetPoint(distance);
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.position = worldPoint;
+
+                min = Vector3.Min(min, worldPoint);
+                max = Vector3.Max(max, worldPoint);
+            }
+        }
+
+        boundsMin = new Vector2(min.x, min.z);
+        boundsMax = new Vector2(max.x, max.z);
+    }
 
     void VisualizeBounds(Vector2 min, Vector2 max)
     {
-        boundsVisualGO.transform.position = new Vector3(transform.position.x, waterPlane.transform.position.y + 0.01f, transform.position.z);
         Vector2 size = new Vector2(max.x - min.x, max.y - min.y);
-        boundsVisualGO.transform.localScale = new Vector3(size.x, size.y, 1.0f);
+        boundsVisualGO.transform.position = new Vector3(min.x + (size.x / 2f), waterGO.transform.position.y + 0.01f, min.y + (size.y / 2f));
+        boundsVisualGO.transform.localScale = new Vector3(size.x, 1.0f, size.y);
 
         boundsVisualGO.SetActive(true);
     }
