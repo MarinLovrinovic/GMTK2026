@@ -22,10 +22,12 @@ public class Vehicle : MonoBehaviour, IHittable
     {
         if (!isFrozen)
         {
+            // Turn
+            velocity = velocity.RotateVector2ByDegrees(turningDirection * turningSpeed * Time.deltaTime);
+            transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
+            
             // Move
             transform.position += velocity.xoy() * Time.fixedDeltaTime;
-            // Rotate towards movement
-            transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
         }
     }
 
