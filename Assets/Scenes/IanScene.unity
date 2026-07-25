@@ -1639,17 +1639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombs:
   - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
-  - {fileID: 4169599846331921678, guid: 3f1bdf0e927b4c94e97d64c9080449e8, type: 3}
-  - {fileID: 2832341686369346766, guid: 6130dc6eac1b0c54b8945724ecd5a694, type: 3}
-  - {fileID: 6798569576421909068, guid: e740ea001d9d825429e3449b7b1fb7fc, type: 3}
-  - {fileID: 3093678186698877201, guid: c2bc85a0a0977dc429e6bd5e75060c1f, type: 3}
-  - {fileID: 8565096604316749435, guid: 8d4206ff4c4867347aec85c7bfddd67b, type: 3}
   weightedProbabilities:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
   - 1
 --- !u!114 &2087632958
 MonoBehaviour:
