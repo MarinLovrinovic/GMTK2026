@@ -71,7 +71,7 @@ public class Bomb : MonoBehaviour, IHittable
         foreach (Collider hit in hits)
         {
             IHittable hittable = hit.GetComponent<IHittable>();
-            if (!ReferenceEquals(hittable, this)) explosionLogic(hittable, isSelfCaused);
+            if (hittable != null && !ReferenceEquals(hittable, this)) explosionLogic(hittable, isSelfCaused);
         }
         GameObject effect = Instantiate(explosionFX, transform.position, Quaternion.identity);
         float scale = 2.2f * explosionRadius;

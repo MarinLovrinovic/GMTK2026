@@ -5,24 +5,34 @@ using UnityEngine.U2D;
 [RequireComponent(typeof(Camera))]
 public class CameraMapBounds : MonoBehaviour
 {
+    private static CameraMapBounds Instance;
     private Camera camera;
     [SerializeField] private GameObject waterGO;
 
     public static PlaneTrapezoid activeArea { get; private set; }
 
-    [SerializeField] private bool visualizeOnStart = false;
+    [SerializeField] private bool visualize = false;
     [SerializeField] private Material visualizationMaterial;
     private GameObject visualGO = null;
 
 
     private void Awake() 
     {
+        if (Instance != null) { Debug.LogError("Multiple CameraMapBounds scripts in scene."); }
+        Instance = this;
         camera = GetComponent<Camera>();
     }
     private void Start()
     {
         CalculateBounds();
-        if (visualizeOnStart) { VisualizeBounds(activeArea); }
+        if (visualize) { VisualizeBounds(activeArea); }
+    }
+
+
+    public static void UpdateBounds()
+    {
+        Instance.CalculateBounds();
+        if (Instance.visualize) { Instance.VisualizeBounds(activeArea); }
     }
 
 
@@ -50,6 +60,13 @@ public class CameraMapBounds : MonoBehaviour
         activeArea = new PlaneTrapezoid(bounds, waterGO.transform.position.y);
     }
 
+    public bool BombAtLeftEdge()
+    {
+
+
+        return false;
+    }
+
     void VisualizeBounds(PlaneTrapezoid activeArea)
     {
         if (visualGO != null) { Destroy(visualGO); }
@@ -75,6 +92,7 @@ public class CameraMapBounds : MonoBehaviour
         MeshRenderer renderer = visualGO.AddComponent<MeshRenderer>();
         filter.mesh = mesh;
         renderer.material = visualizationMaterial;
-        Instantiate(visualGO, new Vector3(0f, 0.1f, 0f), Quaternion.identity, transform);
+        visualGO.transform.position = new Vector3(0f, 0.1f, 0f);
+        //Instantiate(visualGO, new Vector3(0f, 0.1f, 0f), Quaternion.identity, transform);
     }
 }
