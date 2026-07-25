@@ -33,12 +33,18 @@ public class Vehicle : MonoBehaviour, IHittable
 
     private IEnumerator waitFrozen(float time)
     {
+        if (FreezeBomb.freezeShip) { transform.Find("Frozen").Find("IceShip").gameObject.SetActive(true); }
+        else { transform.Find("Frozen").Find("IceCube").gameObject.SetActive(true); }
         isFrozen = true;
         Vector2 previousVelocity = velocity;
         velocity = Vector2.zero;
+
         yield return new WaitForSecondsRealtime(time);
+
         velocity = previousVelocity;
         isFrozen = false;
+        if (FreezeBomb.freezeShip) { transform.Find("Frozen").Find("IceShip").gameObject.SetActive(false); }
+        else { transform.Find("Frozen").Find("IceCube").gameObject.SetActive(false); }
     }
 
     public void Hit(float damage)

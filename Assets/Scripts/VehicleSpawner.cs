@@ -8,6 +8,9 @@ public class VehicleSpawner : MonoBehaviour
     private float timeUntilNextVehicle = 1;
     private List<Vehicle> vehicles = new();
 
+    [SerializeField, Range(15f, 90f)] private float spawnVelMaxAngle;
+    [SerializeField] private float leaveBoundsPadding = 0f;
+
     private void Update()
     {
         vehicles.RemoveAll(vehicle =>
@@ -15,7 +18,7 @@ public class VehicleSpawner : MonoBehaviour
             if (!vehicle) return true;
 
             Vector2 pos = vehicle.Position;
-            if (Mathf.Abs(pos.x) > 10 * Scaler.Scale || Mathf.Abs(pos.y) > 6 * Scaler.Scale) // vehicle out of bounds
+            if (!CameraMapBounds.activeArea.IsInside(pos, leaveBoundsPadding))
             {
                 Destroy(vehicle.gameObject);
                 return true;
@@ -74,7 +77,7 @@ public class VehicleSpawner : MonoBehaviour
                 break;
             }
             newVehiclePosition = GetInitialVehicleLocation(out normal);
-            newVehicleVelocity = normal.RandomVectorDeviation(80) * newVehicle.speed;
+            newVehicleVelocity = normal.RandomVectorDeviation(spawnVelMaxAngle) * newVehicle.speed;
         }
 
         if (collisionOnPath)
@@ -85,6 +88,7 @@ public class VehicleSpawner : MonoBehaviour
 
         newVehicle.transform.position = newVehiclePosition.xoy();
         newVehicle.velocity = newVehicleVelocity;
+        Debug.DrawRay(newVehiclePosition.xoy(), newVehicleVelocity.xoy().normalized * 6f, Color.purple, 10f);
 
         vehicles.Add(newVehicle);
     }
@@ -165,6 +169,12 @@ public class VehicleSpawner : MonoBehaviour
         return anyCollisions;
     }
 
+
+    private Vector2 GetInitialVehicleLocation(out Vector2 normal)
+    {
+        return CameraMapBounds.activeArea.SampleEdgePoint(out normal);
+    }
+    /*
     private Vector2 GetInitialVehicleLocation(out Vector2 normal)
     {
         float edgeDistance = Random.Range(0f, (2f * 18f + 2f * 11f) * Scaler.Scale);
@@ -197,5 +207,5 @@ public class VehicleSpawner : MonoBehaviour
         position += Vector2.up * edgeDistance;
         normal = Vector2.right;
         return position;
-    }
+    }*/
 }
