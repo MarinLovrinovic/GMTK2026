@@ -9,7 +9,7 @@ public class Icon : MonoBehaviour
     private void Start()
     {
         target = transform.parent;
-        transform.SetParent(ServiceProvider.Instance.iconCanvas.transform);
+        transform.SetParent(ServiceProvider.Instance.iconCanvas.transform, false);
         mainCamera = Camera.main;
     }
 

@@ -9,17 +9,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2045678323855028525, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.b
-      value: 0.11027889
-      objectReference: {fileID: 0}
-    - target: {fileID: 2045678323855028525, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.g
-      value: 0.645283
-      objectReference: {fileID: 0}
-    - target: {fileID: 2045678323855028525, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bff556bfd06afda448e0dbc0c9679092, type: 3}
     - target: {fileID: 6822961098010419999, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -105,17 +97,13 @@ PrefabInstance:
       value: NuclearBombIcon
       objectReference: {fileID: 0}
     - target: {fileID: 8559564612320205188, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.b
-      value: 0.072275266
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559564612320205188, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.g
-      value: 0.4188679
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559564612320205188, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bff556bfd06afda448e0dbc0c9679092, type: 3}
+    - target: {fileID: 8656493318950761244, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bff556bfd06afda448e0dbc0c9679092, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

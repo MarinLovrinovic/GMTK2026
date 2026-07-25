@@ -103,7 +103,7 @@ MonoBehaviour:
     m_Bits: 72
   explosionRadius: 1
   damage: 1
-  explosionFX: {fileID: 2240980826831452673, guid: 86339ef96e3f8f44a8f3a62a42106a9f, type: 3}
+  explosionFX: {fileID: 2279208914532867456, guid: 70d10db2c31c2e347b72e36aa081fa77, type: 3}
   countdownText: {fileID: 4108516286939891576}
   minTime: 5
   maxTime: 5

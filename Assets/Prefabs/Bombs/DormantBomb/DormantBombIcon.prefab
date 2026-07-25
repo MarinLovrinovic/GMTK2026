@@ -8,18 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2045678323855028525, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.b
-      value: 0.0035670542
+    - target: {fileID: 1000167206741031431, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000167206741031431, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000167206741031431, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000167206741031431, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 2045678323855028525, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.g
-      value: 0.34801045
-      objectReference: {fileID: 0}
-    - target: {fileID: 2045678323855028525, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.r
-      value: 0.6301887
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79a63c48a9c2bbb43bd2b061d47c0ca1, type: 3}
     - target: {fileID: 6822961098010419999, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -105,17 +113,13 @@ PrefabInstance:
       value: DormantBombIcon
       objectReference: {fileID: 0}
     - target: {fileID: 8559564612320205188, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559564612320205188, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.g
-      value: 0.75416994
-      objectReference: {fileID: 0}
-    - target: {fileID: 8559564612320205188, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79a63c48a9c2bbb43bd2b061d47c0ca1, type: 3}
+    - target: {fileID: 8656493318950761244, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79a63c48a9c2bbb43bd2b061d47c0ca1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
