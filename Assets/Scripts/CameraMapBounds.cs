@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.U2D;
 
 [RequireComponent(typeof(Camera))]
 public class CameraMapBounds : MonoBehaviour
@@ -7,48 +8,27 @@ public class CameraMapBounds : MonoBehaviour
     private Camera camera;
     [SerializeField] private GameObject waterGO;
 
-    public static Vector2 boundsMin { get; private set; }
-    public static Vector2 boundsMax { get; private set; }
+    public static PlaneTrapezoid activeArea { get; private set; }
 
-    [SerializeField] private GameObject boundsVisualGO;
     [SerializeField] private bool visualizeOnStart = false;
+    [SerializeField] private Material visualizationMaterial;
+    private GameObject visualGO = null;
 
 
     private void Awake() 
     {
         camera = GetComponent<Camera>();
-        boundsVisualGO.SetActive(false);
-        boundsVisualGO.transform.rotation = Quaternion.identity;
     }
     private void Start()
     {
-        CalculateBoundsRaycast();
-        if (visualizeOnStart) { VisualizeBounds(boundsMin, boundsMax); }
+        CalculateBounds();
+        if (visualizeOnStart) { VisualizeBounds(activeArea); }
     }
-
 
 
     void CalculateBounds()
     {
-        float distance = Mathf.Abs(transform.position.y - waterGO.transform.position.y);
-
-        float visibleHeight = 2f * distance *
-                      Mathf.Tan(camera.fieldOfView * Mathf.Deg2Rad * 0.5f);
-
-        float visibleWidth = visibleHeight * camera.aspect;
-
-        Vector2 center = new Vector3(
-            camera.transform.position.x,
-            camera.transform.position.z
-        );
-
-        boundsMin = center + new Vector2(-visibleWidth / 2f, -visibleHeight / 2f);
-        boundsMax = center + new Vector2(visibleWidth / 2f, visibleHeight / 2f);
-    }
-    void CalculateBoundsRaycast()
-    {
         Plane waterPlane = new Plane(waterGO.transform.up, waterGO.transform.position);
-
         Vector3[] viewportCorners =
         {
             new Vector3(0, 0, 0), // bottom-left
@@ -56,35 +36,45 @@ public class CameraMapBounds : MonoBehaviour
             new Vector3(0, 1, 0), // top-left
             new Vector3(1, 1, 0)  // top-right
         };
-
-        Vector3 min = Vector3.one * float.MaxValue;
-        Vector3 max = Vector3.one * float.MinValue;
-
-        foreach (Vector3 corner in viewportCorners)
+        Vector2[] bounds = new Vector2[4];
+        for (int i = 0; i < 4; ++i)
         {
+            Vector3 corner = viewportCorners[i];
             Ray ray = camera.ViewportPointToRay(corner);
-
             if (waterPlane.Raycast(ray, out float distance))
             {
                 Vector3 worldPoint = ray.GetPoint(distance);
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = worldPoint;
-
-                min = Vector3.Min(min, worldPoint);
-                max = Vector3.Max(max, worldPoint);
+                bounds[i] = new Vector2(worldPoint.x, worldPoint.z);
             }
         }
-
-        boundsMin = new Vector2(min.x, min.z);
-        boundsMax = new Vector2(max.x, max.z);
+        activeArea = new PlaneTrapezoid(bounds, waterGO.transform.position.y);
     }
 
-    void VisualizeBounds(Vector2 min, Vector2 max)
+    void VisualizeBounds(PlaneTrapezoid activeArea)
     {
-        Vector2 size = new Vector2(max.x - min.x, max.y - min.y);
-        boundsVisualGO.transform.position = new Vector3(min.x + (size.x / 2f), waterGO.transform.position.y + 0.01f, min.y + (size.y / 2f));
-        boundsVisualGO.transform.localScale = new Vector3(size.x, 1.0f, size.y);
-
-        boundsVisualGO.SetActive(true);
+        if (visualGO != null) { Destroy(visualGO); }
+        Mesh mesh = new Mesh();
+        mesh.name = "BoundsVisualization";
+        Vector3[] vertices = new Vector3[4];
+        for (int i = 0; i < 4; ++i)
+        {
+            vertices[i] = new Vector3(activeArea.points[i].x, 0f, activeArea.points[i].y);
+        }
+        int[] triangles = new int[]
+        {
+            2, 1, 0,
+            2, 3, 1
+        };
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
+        // Optional: calculate normals for lighting
+        mesh.RecalculateNormals();
+        // Assign mesh to object
+        visualGO = new GameObject("BoundsVisualization");
+        MeshFilter filter = visualGO.AddComponent<MeshFilter>();
+        MeshRenderer renderer = visualGO.AddComponent<MeshRenderer>();
+        filter.mesh = mesh;
+        renderer.material = visualizationMaterial;
+        Instantiate(visualGO, new Vector3(0f, 0.1f, 0f), Quaternion.identity, transform);
     }
 }
