@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Waves
-  m_Shader: {fileID: -6465566751694194690, guid: a67913c20de668146839d641f9320e0c, type: 3}
-  m_Parent: {fileID: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 80f1c548bf9cc9ca197a9a4550830df4, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: 80f1c548bf9cc9ca197a9a4550830df4, type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -25,30 +25,23 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseTexture:
-        m_Texture: {fileID: 2800000, guid: 2035bddba15136f03bf89593fea3850d, type: 3}
+        m_Texture: {fileID: 2800000, guid: eb9f81b1f210db1ef88d281a0aeec55a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
+    - _DIsplacementTexture:
+        m_Texture: {fileID: 2800000, guid: 299303a0b5d4cf8318005fb7246e6bfc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Wave_Speed: 1
-    - _Wave_Strength: 0.2
+    - _DisplacementStrength: 1
+    - _DisplacementTilingOn: 1
+    - _FoamDistance: 0.6
+    - _FoamVelocity: 0.01
+    - _Wave_Speed: -1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.6784314, b: 1, a: 1}
-    - _TextureTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _DisplacementTIling: {r: 2.73, g: 3.19, b: 0, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5106211467666478048
