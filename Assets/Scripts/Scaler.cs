@@ -22,6 +22,6 @@ public class Scaler : MonoBehaviour
     void Update()
     {
         Scale = scale;
-        Camera.main.orthographicSize = 4.5f * scale;
+        // Camera.main.orthographicSize = 4.5f * scale;
     }
 }

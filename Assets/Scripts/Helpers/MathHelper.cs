@@ -174,11 +174,28 @@ public static class MathHelper
         return Random.Range(min + index * step, min + index * step + step);
     }
 
-    public static bool RandomBool(float probabilityOfTrue)
+    public static bool RandomBool(float probabilityOfTrue = 0.5f)
     {
         if (probabilityOfTrue == 0f)
             return false;
         return Random.value <= probabilityOfTrue;
+    }
+
+    public static T WeightedRandomFromDistributionArray<T>(T[] items, float[] weights)
+    {
+        float totalWeight = 0.0f;
+        foreach (float weight in weights) totalWeight += weight;
+
+        float randomValueInWeights = Random.Range(0.0f, totalWeight);
+
+        float cumulativeWeight = 0.0f;
+        for (int i = 0; i < items.Length; i++)
+        {
+            cumulativeWeight += weights[i];
+            if (randomValueInWeights < cumulativeWeight) return items[i];
+        }
+
+        return items[items.Length - 1];
     }
 }
 

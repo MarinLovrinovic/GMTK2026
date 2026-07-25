@@ -1,21 +1,52 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IHittable
 {
-    public Vector2 velocity = new(1, 1);
+    [NonSerialized] public Vector2 velocity = new(1, 1);
+    public float radius = 1;
+    public float speed = 1;
+    public float turningSpeed = 5; // degrees per second
+    public float turningDirection = 0; // -1 is left, 1 is right, 0 is no turn
+    public Vector2 Position => transform.position.xz();
+
+    private bool isFrozen;
+
+    private void Start()
+    {
+        isFrozen = false;
+    }
+
     private void FixedUpdate()
     {
-        transform.position += velocity.xyo() * Time.fixedDeltaTime;
-        transform.rotation = velocity.Vector2ToQuaternion();
-        if (Mathf.Abs(transform.position.x) > 10 * Scaler.Scale || Mathf.Abs(transform.position.y) > 6 * Scaler.Scale)
+        if (!isFrozen)
         {
-            Destroy(gameObject);    
+            // Move
+            transform.position += velocity.xoy() * Time.fixedDeltaTime;
+            // Rotate towards movement
+            transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
         }
+    }
+
+    private IEnumerator waitFrozen(float time)
+    {
+        isFrozen = true;
+        Vector2 previousVelocity = velocity;
+        velocity = Vector2.zero;
+        yield return new WaitForSecondsRealtime(time);
+        velocity = previousVelocity;
+        isFrozen = false;
     }
 
     public void Hit(float damage)
     {
         Destroy(gameObject);
+    }
+
+    public void Freeze(float time)
+    {
+        if (isFrozen) return;
+        StartCoroutine(waitFrozen(time));
     }
 }
