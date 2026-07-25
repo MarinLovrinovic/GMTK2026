@@ -1639,7 +1639,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombs:
   - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
+  - {fileID: 4169599846331921678, guid: 3f1bdf0e927b4c94e97d64c9080449e8, type: 3}
   weightedProbabilities:
+  - 1
   - 1
 --- !u!114 &2087632958
 MonoBehaviour:

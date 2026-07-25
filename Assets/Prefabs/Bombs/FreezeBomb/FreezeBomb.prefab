@@ -108,6 +108,7 @@ MonoBehaviour:
   minTime: 4
   maxTime: 14
   freezeTime: 5
+  icePrefab: {fileID: 3114984292116275958, guid: 4c7b42840a518984b996cc71a81f9855, type: 3}
 --- !u!1001 &3334884593434644003
 PrefabInstance:
   m_ObjectHideFlags: 0
