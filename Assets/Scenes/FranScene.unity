@@ -882,6 +882,7 @@ MonoBehaviour:
   - {fileID: 8565096604316749435, guid: 8d4206ff4c4867347aec85c7bfddd67b, type: 3}
   - {fileID: 6798569576421909068, guid: e740ea001d9d825429e3449b7b1fb7fc, type: 3}
   - {fileID: 3093678186698877201, guid: c2bc85a0a0977dc429e6bd5e75060c1f, type: 3}
+  - {fileID: 6670937565897870866, guid: 1fe03aa03dd6a2747beb179b83f341c8, type: 3}
   weightedProbabilities:
   - 10
   - 5
@@ -889,6 +890,7 @@ MonoBehaviour:
   - 3
   - 6
   - 6
+  - 3
 --- !u!114 &2087632958
 MonoBehaviour:
   m_ObjectHideFlags: 0
