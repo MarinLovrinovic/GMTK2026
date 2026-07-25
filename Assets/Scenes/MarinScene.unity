@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMapBounds
   waterGO: {fileID: 1903663996}
-  boundsVisualGO: {fileID: 1463508105}
-  visualizeOnStart: 0
+  visualize: 0
+  visualizationMaterial: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1285,7 +1285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1903663997
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1683,6 +1683,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehiclePrefab: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+  spawnVelMaxAngle: 15
+  leaveBoundsPadding: 0
 --- !u!114 &2087632960
 MonoBehaviour:
   m_ObjectHideFlags: 0

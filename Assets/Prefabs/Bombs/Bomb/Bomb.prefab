@@ -100,7 +100,7 @@ MonoBehaviour:
   releaseImage: {fileID: 1864906812013890893}
   hittable:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   explosionRadius: 1.5
   damage: 1
   explosionFX: {fileID: 2279208914532867456, guid: 70d10db2c31c2e347b72e36aa081fa77, type: 3}
