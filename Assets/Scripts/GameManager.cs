@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float indicatorHeightFull = 20;
     [SerializeField] private float indicatorHeightEmpty = 5;
     [SerializeField] private AnimationCurve regenerationAnimationCurve;
+    [SerializeField] private GameObject endgameTextObj;
+
     private readonly List<RectTransform> healthPointIndicators = new();
     private readonly List<float> healthPointIndicatorTargetHeights = new();
     
@@ -32,6 +36,8 @@ public class GameManager : MonoBehaviour
         }
         regenerationIndicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0f);
         ResetRegenerationIndicator();
+
+        endgameTextObj.SetActive(false);
     }
 
     private void Update()
@@ -110,8 +116,23 @@ public class GameManager : MonoBehaviour
         regenerationIndicator.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0f);
     }
     
+    private IEnumerator waitAMoment()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void GameLost()
     {
+        ServiceProvider.Instance.soundManager.stopTrack();
+
+        healthIndicator.gameObject.SetActive(false);
+        regenerationIndicator.gameObject.SetActive(false);
+        healthPointIndicatorPrefab.gameObject.SetActive(false);
+
+        endgameTextObj.SetActive(true);
+        StartCoroutine(waitAMoment());
+
         Debug.Log("game lost!");
     }
 }
