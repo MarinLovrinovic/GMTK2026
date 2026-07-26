@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ObstacleSpawner : MonoBehaviour
 {
@@ -92,5 +94,26 @@ public class ObstacleSpawner : MonoBehaviour
     Obstacle GetRandomPrefab()
     {
         return obstaclePrefabs[(int)Random.Range(0, obstaclePrefabs.Length)];
+    }
+
+    void FetchAllObstacles()
+    {
+        string fullPath = "Assets/Prefabs/Obstacles";
+        List<Obstacle> found = new List<Obstacle>();
+
+        foreach (string prefabPath in AssetDatabase.FindAssets(fullPath))
+        {
+            GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath);
+
+            if (prefab != null && prefab.GetComponent<Obstacle>() is Obstacle o)
+            { found.Add(o); Debug.Log("Found " + o); }
+            else
+            {
+                if (prefab == null) { Debug.LogWarning($"Expected prefab not found: {prefabPath}"); }
+                else { Debug.LogWarning($"Prefab '{prefabPath}' doesn't have a Bomb script."); }
+            }
+        }
+
+        obstaclePrefabs = found.ToArray();
     }
 }

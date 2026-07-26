@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d17e6e79409047a5418bdd256e650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
-  areaDuration: 3
+  areaDuration: 15
   transitionDuration: 5
   sea: {fileID: 364528487}
 --- !u!1 &902196184
@@ -942,6 +942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehiclePrefab: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+  vehiclePrefabs:
+  - {fileID: 6704854262469431661, guid: 16c65720776c20242babbca6cfbc5cb7, type: 3}
+  - {fileID: 8693536431289283928, guid: 190549a1e50faf74bbfc2088f5697bce, type: 3}
   spawnVelMaxAngle: 80
   leaveBoundsPadding: 10
 --- !u!114 &2087632960
@@ -984,6 +987,7 @@ MonoBehaviour:
   obstaclePrefabs:
   - {fileID: 8020263202296306995, guid: 42b2443f1801f0f4eac1823320c5d462, type: 3}
   - {fileID: 218970909367691597, guid: 733d30dfb18177c4b828cfbd94cdc950, type: 3}
+  - {fileID: 2429019384910382522, guid: 886437a9461bd8d479719a7a373c689e, type: 3}
   obstacleCount: 3
   minimumDistance: 2
   radiusRange: {x: 3, y: 5}

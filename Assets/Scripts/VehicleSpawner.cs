@@ -5,6 +5,7 @@ using UnityEngine;
 public class VehicleSpawner : MonoBehaviour
 {
     [SerializeField] private Vehicle vehiclePrefab;
+    [SerializeField] private Vehicle[] vehiclePrefabs;
     private float timeUntilNextVehicle = 1;
     private List<Vehicle> vehicles = new();
 
@@ -62,7 +63,7 @@ public class VehicleSpawner : MonoBehaviour
     {
         Vector2 newVehiclePosition = GetInitialVehicleLocation(out Vector2 normal);
             
-        Vehicle newVehicle = Instantiate(vehiclePrefab, newVehiclePosition.xoy(), Quaternion.identity);
+        Vehicle newVehicle = Instantiate(GetRandomPrefab(), newVehiclePosition.xoy(), Quaternion.identity);  //vehiclePrefab
 
         Vector2 newVehicleVelocity = normal.RandomVectorDeviation(spawnVelMaxAngle) * newVehicle.speed;
 
@@ -180,6 +181,10 @@ public class VehicleSpawner : MonoBehaviour
     private Vector2 GetInitialVehicleLocation(out Vector2 normal)
     {
         return CameraMapBounds.activeArea.SampleEdgePoint(out normal);
+    }
+    private Vehicle GetRandomPrefab()
+    {
+        return vehiclePrefabs[Random.Range(0, vehiclePrefabs.Length)];
     }
     /*
     private Vector2 GetInitialVehicleLocation(out Vector2 normal)
