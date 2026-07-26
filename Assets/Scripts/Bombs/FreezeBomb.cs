@@ -8,6 +8,11 @@ public class FreezeBomb : Bomb
 
     public static bool freezeShip = false;
 
+    protected override void preExplosionLogic(bool isSelfCaused)
+    {
+        ServiceProvider.Instance.soundManager.playSound(2);
+    }
+
     protected override void explosionLogic(IHittable hittable, bool isSelfCaused)
     {
         hittable.Freeze(freezeTime);

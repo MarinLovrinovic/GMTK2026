@@ -41,6 +41,7 @@ Material:
     - _QueueControl: 0
     - _Wave_Speed: -1
     m_Colors:
+    - _BaseColor: {r: 0.42830187, g: 0.7005296, b: 1, a: 1}
     - _DisplacementTIling: {r: 2.73, g: 3.19, b: 0, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

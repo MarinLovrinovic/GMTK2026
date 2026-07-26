@@ -6,6 +6,8 @@ public class NuclearBomb : Bomb
 
     protected override void preExplosionLogic(bool isSelfCaused)
     {
+        ServiceProvider.Instance.soundManager.playSound(3);
+
         if (isSelfCaused)
         {
             explosionRadius = finalExplosionRadius;

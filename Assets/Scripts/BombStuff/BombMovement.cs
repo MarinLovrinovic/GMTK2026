@@ -34,6 +34,7 @@ public class BombMovement : MonoBehaviour
 
             if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
+                ServiceProvider.Instance.soundManager.playSound(0);
                 carrying.Release();
                 carrying = null;
             }
@@ -53,6 +54,7 @@ public class BombMovement : MonoBehaviour
                 {
                     if (bomb != null && !bomb.Moved)
                     {
+                        ServiceProvider.Instance.soundManager.playSound(1);
                         bomb.Move();
                         carrying = bomb;
                         bombY = bomb.transform.position.y;

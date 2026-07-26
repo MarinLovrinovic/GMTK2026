@@ -112,6 +112,7 @@ public class Bomb : MonoBehaviour, IHittable
         //float scale = 2.2f * explosionRadius;
         //effect.transform.localScale = new Vector3(scale, scale, scale);
 
+        ServiceProvider.Instance.soundManager.playSound(4);
         Destroy(gameObject);
     }
 
@@ -124,7 +125,10 @@ public class Bomb : MonoBehaviour, IHittable
 
     protected virtual void perTickLogic() { }
 
-    protected virtual void preExplosionLogic(bool isSelfCaused) { }
+    protected virtual void preExplosionLogic(bool isSelfCaused)
+    {
+        ServiceProvider.Instance.soundManager.playSound(5);
+    }
 
     protected virtual void explosionLogic(IHittable hittable, bool isSelfCaused)
     {
