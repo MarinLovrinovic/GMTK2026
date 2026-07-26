@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: tankerBl
       objectReference: {fileID: 0}
+    - target: {fileID: 6830945432629781959, guid: 16b7bb16237774c49985352285d5dad8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.237
+      objectReference: {fileID: 0}
+    - target: {fileID: 6830945432629781959, guid: 16b7bb16237774c49985352285d5dad8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.229
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
