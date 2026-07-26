@@ -9,6 +9,7 @@ public class Bomb : MonoBehaviour, IHittable
     public GameObject initialImage;
     public GameObject carryImage;
     public GameObject releaseImage;
+    [SerializeField] GameObject frozenOverlay;
 
     [SerializeField] protected LayerMask hittable;
     [SerializeField] protected float explosionRadius = 1;
@@ -19,6 +20,7 @@ public class Bomb : MonoBehaviour, IHittable
     [SerializeField] protected int maxTime;
     [SerializeField] protected bool alwaysShowRadius;
     [SerializeField] protected LineRenderer radiusDisplay;
+    public Vector2 Position => transform.position.xz();
 
     public void SetRadiusDisplay(bool value)
     {
@@ -52,6 +54,7 @@ public class Bomb : MonoBehaviour, IHittable
     {
         if (radiusDisplay)
         {
+            Debug.Log("radius display, always show: " + alwaysShowRadius.ToString());
             radiusDisplay.enabled = alwaysShowRadius;
             UpdateDisplayRadius(explosionRadius);
         }
@@ -117,7 +120,9 @@ public class Bomb : MonoBehaviour, IHittable
     private IEnumerator waitFrozen(float time)
     {
         isFrozen = true;
+        frozenOverlay.SetActive(true);
         yield return new WaitForSeconds(time);
+        frozenOverlay.SetActive(false);
         isFrozen = false;
     }
 

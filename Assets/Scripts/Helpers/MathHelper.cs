@@ -109,6 +109,10 @@ public static class MathHelper
     {
         return MinimumDistanceOfMovingPoints(pos1, v1, pos2, v2) <= r1 + r2;
     }
+    public static bool CirclesIntersect(Vector2 pos1, float r1, Vector2 pos2, float r2)
+    {
+        return Vector2.Distance(pos1, pos2) <= r1 + r2;
+    }
 
     //returns the time of collision
     public static float MovingCirclesCollisionTime(Vector2 pos1, Vector2 v1, float r1, Vector2 pos2, Vector2 v2, float r2)
@@ -179,6 +183,13 @@ public static class MathHelper
         if (probabilityOfTrue == 0f)
             return false;
         return Random.value <= probabilityOfTrue;
+    }
+
+    public static int ProbabilisticRoundToInt(float x)
+    {
+        int roundedDown = (int)x;
+        float frac = x - roundedDown;
+        return RandomBool(frac) ? roundedDown + 1 : roundedDown;
     }
 
     public static T WeightedRandomFromDistributionArray<T>(T[] items, float[] weights)

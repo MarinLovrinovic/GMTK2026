@@ -99,6 +99,7 @@ MonoBehaviour:
   initialImage: {fileID: 7259220064347895475}
   carryImage: {fileID: 5426705348389025260}
   releaseImage: {fileID: 1864906812013890893}
+  frozenOverlay: {fileID: 636591037036795635}
   hittable:
     serializedVersion: 2
     m_Bits: 72
@@ -108,7 +109,7 @@ MonoBehaviour:
   countdownText: {fileID: 3711329516763058054}
   minTime: 4
   maxTime: 14
-  alwaysShowRadius: 1
+  alwaysShowRadius: 0
   radiusDisplay: {fileID: 7483529857127222718}
 --- !u!1001 &937226455329568849
 PrefabInstance:
@@ -286,6 +287,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+--- !u!1 &636591037036795635 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3942237791107687282, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}
+  m_PrefabInstance: {fileID: 4494597164170655105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1864906812013890893 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2846695612917086412, guid: d4eab93acfe4f9c46866de56bcb63785, type: 3}

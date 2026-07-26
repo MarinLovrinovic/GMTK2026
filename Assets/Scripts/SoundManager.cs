@@ -25,11 +25,11 @@ public class SoundManager : MonoBehaviour
 
     public void playSound(int idx)
     {
-        sources[idx].Play();
+        //sources[idx].Play();
     }
 
     public void stopSound(int idx)
     {
-        sources[idx].Stop();
+        //sources[idx].Stop();
     }
 }

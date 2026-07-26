@@ -158,3 +158,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0cc2926acd0d1b41b195725c4c7c229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FreezeExplosion
+  lengthInTime: 1

@@ -99,6 +99,7 @@ MonoBehaviour:
   initialImage: {fileID: 7942315043771137613}
   carryImage: {fileID: 4740791225942064402}
   releaseImage: {fileID: 1397331527107036595}
+  frozenOverlay: {fileID: 166786496582819341}
   hittable:
     serializedVersion: 2
     m_Bits: 72
@@ -122,6 +123,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e6fda30929d77a7488afd257c7ef3af6, type: 3}
+    - target: {fileID: 4070985401362299217, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070985401362299217, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4070985401362299217, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4852606384292928210, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -219,6 +232,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
+--- !u!1 &166786496582819341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 228523611677466660, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
+  m_PrefabInstance: {fileID: 106796031533235753}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1397331527107036595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1305828327937735578, guid: ac4a3584e04ff3947b252c98f51330a3, type: 3}
