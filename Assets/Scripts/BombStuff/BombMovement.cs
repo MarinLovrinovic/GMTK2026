@@ -50,8 +50,15 @@ public class BombMovement : MonoBehaviour
                 Bomb bomb = hit.collider.GetComponent<Bomb>();
                 if (bomb != null && displayedRadius != null)
                 {
-                    radiusRadius = bomb.getExplosionRadius() * 2.2f;
-                    displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
+                    radiusRadius = bomb.getExplosionRadius();
+                    if (radiusIs2D)
+                    {
+                        displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius) * 2;
+                    }
+                    else
+                    {
+                        displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
+                    }
                 }
 
                 if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -75,7 +82,7 @@ public class BombMovement : MonoBehaviour
                         radiusRadius = bomb.getExplosionRadius();
                         if (radiusIs2D)
                         {
-                            displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius);
+                            displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius) * 2;
                         }
                         else
                         {

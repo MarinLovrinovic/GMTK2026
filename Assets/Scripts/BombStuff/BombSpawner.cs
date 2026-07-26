@@ -2,7 +2,6 @@
 
 public class BombSpawner : MonoBehaviour
 {
-    /*
     [SerializeField] private Bomb[] bombs;
     [SerializeField] private float[] weightedProbabilities;
 
@@ -11,7 +10,7 @@ public class BombSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        CoroutineHelper.ExecuteTheNextFrame(() => TickDriver.instance.OnTick += Tick);
+        TickDriver.instance.OnTick += Tick;
     }
 
     private void OnDisable()
@@ -33,8 +32,8 @@ public class BombSpawner : MonoBehaviour
             timeUntilNextBomb = Random.Range(1, 1 + Mathf.Min(6, 60 / totalTimer));
         }
     }
-    */
-
+    
+    /*
     private float totalTimer = 0;
     [SerializeField] private Bomb[] bombs;
     [SerializeField] private float[] weightedProbabilities;
@@ -52,4 +51,5 @@ public class BombSpawner : MonoBehaviour
             timeUntilNextBomb = Random.Range(1f, 1f + Mathf.Min(6, 60 / totalTimer));
         }
     }
+    */
 }
