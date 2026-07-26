@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3885063643661632785}
   - component: {fileID: 946392946394049550}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SpriteGraphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3860649984385708280}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HoverRadius2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
