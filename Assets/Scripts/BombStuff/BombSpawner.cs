@@ -38,7 +38,7 @@ public class BombSpawner : MonoBehaviour
     private void SpawnBomb()
     {
         Vector2 location = CameraMapBounds.activeArea.SamplePoint();
-        location *= 0.2f;
+        location *= 0.01f;
         
         // 40 attempts to find a location that does not overlap with other bombs,
         // otherwise cancel spawn

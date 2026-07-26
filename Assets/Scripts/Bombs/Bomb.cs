@@ -9,6 +9,7 @@ public class Bomb : MonoBehaviour, IHittable
     public GameObject initialImage;
     public GameObject carryImage;
     public GameObject releaseImage;
+    [SerializeField] GameObject frozenOverlay;
 
     [SerializeField] protected LayerMask hittable;
     [SerializeField] protected float explosionRadius = 1;
@@ -119,7 +120,9 @@ public class Bomb : MonoBehaviour, IHittable
     private IEnumerator waitFrozen(float time)
     {
         isFrozen = true;
+        frozenOverlay.SetActive(true);
         yield return new WaitForSeconds(time);
+        frozenOverlay.SetActive(false);
         isFrozen = false;
     }
 

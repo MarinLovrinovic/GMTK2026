@@ -99,6 +99,7 @@ MonoBehaviour:
   initialImage: {fileID: 4250291833016472438}
   carryImage: {fileID: 1517282152236470313}
   releaseImage: {fileID: 5161271452407933064}
+  frozenOverlay: {fileID: 6238716919058166582}
   hittable:
     serializedVersion: 2
     m_Bits: 72
@@ -250,6 +251,11 @@ RectTransform:
 --- !u!1 &5161271452407933064 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7224695849500650670, guid: 0cce438fc71e77844a50ea5e13d0c170, type: 3}
+  m_PrefabInstance: {fileID: 2586125645047792678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6238716919058166582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8464406000914691856, guid: 0cce438fc71e77844a50ea5e13d0c170, type: 3}
   m_PrefabInstance: {fileID: 2586125645047792678}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7908520365297330755 stripped

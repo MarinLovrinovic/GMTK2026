@@ -99,6 +99,7 @@ MonoBehaviour:
   initialImage: {fileID: 249329923433581689}
   carryImage: {fileID: 3208715562105098022}
   releaseImage: {fileID: 9090894990022883207}
+  frozenOverlay: {fileID: 8006698796857486393}
   hittable:
     serializedVersion: 2
     m_Bits: 72
@@ -259,6 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8006698796857486393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4709184095541043738, guid: 2e0f0764a2b06b2439e647a376b5a513, type: 3}
+  m_PrefabInstance: {fileID: 3334884593434644003}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9090894990022883207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5795775437332904356, guid: 2e0f0764a2b06b2439e647a376b5a513, type: 3}
