@@ -97,10 +97,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615b68941fe64aca9862eeee0c4346a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.95
+  isEvil: 0
+  radius: 1.6
   speed: 1
   turningSpeed: 30
   turningDirection: 0
+  deathPositionOffset: {x: 0, y: 0, z: 0}
   deathRotation: {x: -90, y: 0, z: 0}
   deathTime: 1
 --- !u!1 &1906750645203726794

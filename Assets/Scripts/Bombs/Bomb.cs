@@ -19,6 +19,7 @@ public class Bomb : MonoBehaviour, IHittable
     [SerializeField] protected int maxTime;
     [SerializeField] protected bool alwaysShowRadius;
     [SerializeField] protected LineRenderer radiusDisplay;
+    public Vector2 Position => transform.position.xz();
 
     public void SetRadiusDisplay(bool value)
     {
@@ -52,6 +53,7 @@ public class Bomb : MonoBehaviour, IHittable
     {
         if (radiusDisplay)
         {
+            Debug.Log("radius display, always show: " + alwaysShowRadius.ToString());
             radiusDisplay.enabled = alwaysShowRadius;
             UpdateDisplayRadius(explosionRadius);
         }

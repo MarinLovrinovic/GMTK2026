@@ -108,7 +108,7 @@ MonoBehaviour:
   countdownText: {fileID: 3711329516763058054}
   minTime: 4
   maxTime: 14
-  alwaysShowRadius: 1
+  alwaysShowRadius: 0
   radiusDisplay: {fileID: 7483529857127222718}
 --- !u!1001 &937226455329568849
 PrefabInstance:

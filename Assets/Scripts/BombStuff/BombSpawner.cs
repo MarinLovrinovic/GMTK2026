@@ -1,13 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class BombSpawner : MonoBehaviour
 {
     [SerializeField] private Bomb[] bombs;
     [SerializeField] private float[] weightedProbabilities;
-
+    
     private int totalTimer = 0;
     private int timeUntilNextBomb = 2;
-
+    private List<Bomb> deployedBombs = new();
+    
     private void OnEnable()
     {
         TickDriver.instance.OnTick += Tick;
@@ -20,17 +22,58 @@ public class BombSpawner : MonoBehaviour
 
     void Tick()
     {
+        deployedBombs.RemoveAll(bomb => !bomb);
+        
         totalTimer++;
         timeUntilNextBomb--;
 
         if (timeUntilNextBomb <= 0)
         {
-            Vector2 location = new Vector2(Random.Range(-7f, 7f), Random.Range(-3.5f, 3.5f)) * Scaler.Scale;
-            Bomb bombType = MathHelper.WeightedRandomFromDistributionArray<Bomb>(bombs, weightedProbabilities);
-            Instantiate(bombType, location.xoy(), Quaternion.identity);
-
-            timeUntilNextBomb = Random.Range(1, 1 + Mathf.Min(6, 60 / totalTimer));
+            SpawnBomb();
+            timeUntilNextBomb =
+                MathHelper.ProbabilisticRoundToInt(Random.Range(1f, 1f + Mathf.Min(6f, 60f / totalTimer)));
         }
+    }
+
+    private void SpawnBomb()
+    {
+        Vector2 location = CameraMapBounds.activeArea.SamplePoint();
+        location *= 0.2f;
+        
+        // 40 attempts to find a location that does not overlap with other bombs,
+        // otherwise cancel spawn
+        bool bombsAtLocation = true;
+        for (int i = 0; i < 40; i++) 
+        {
+            if (!BombsAtLocation(location))
+            {
+                bombsAtLocation = false;
+                break;
+            }
+            location = CameraMapBounds.activeArea.SamplePoint();
+            location *= 0.2f;
+        }
+
+        if (bombsAtLocation)
+        {
+            return;
+        }
+        
+        Bomb bombType = MathHelper.WeightedRandomFromDistributionArray(bombs, weightedProbabilities);
+        Bomb spawnedBomb = Instantiate(bombType, location.xoy(), Quaternion.identity);
+        deployedBombs.Add(spawnedBomb);
+    }
+
+    private bool BombsAtLocation(Vector2 location)
+    {
+        foreach (Bomb deployedBomb in deployedBombs)
+        {
+            if (Vector2.Distance(deployedBomb.Position, location) <= deployedBomb.getExplosionRadius())
+            {
+                return true;
+            }
+        }
+        return false;
     }
     
     /*

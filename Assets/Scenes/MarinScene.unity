@@ -1153,12 +1153,12 @@ MonoBehaviour:
   - {fileID: 2832341686369346766, guid: 6130dc6eac1b0c54b8945724ecd5a694, type: 3}
   weightedProbabilities:
   - 1
+  - 0
+  - 0
+  - 0
   - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0
+  - 0
 --- !u!114 &2087632958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,8 +1192,8 @@ MonoBehaviour:
   - {fileID: 8568807632623237883, guid: 7fe257a2f62666a41b9b77a65e494b24, type: 3}
   - {fileID: 5112261142599495370, guid: 6360e5400ba04a04897787ed4a7ea5f7, type: 3}
   weightedProbabilities:
-  - 1
-  - 1
+  - 10
+  - 4
   - 1
   - 1
   spawnVelMaxAngle: 15

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour, IHittable
 {
     [NonSerialized] public Vector2 velocity = new(1, 1);
+    public bool isEvil = false;
     public float radius = 1;
     public float speed = 1;
     public float turningSpeed = 5; // degrees per second
@@ -72,7 +73,10 @@ public class Vehicle : MonoBehaviour, IHittable
 
     public void Hit(float damage)
     {
-        ServiceProvider.Instance.gameManager.DamageTaken(1);
+        if (!isEvil)
+        {
+            ServiceProvider.Instance.gameManager.DamageTaken(1);
+        }
         StartCoroutine(waitHit());
     }
 
