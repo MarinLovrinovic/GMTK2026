@@ -492,6 +492,7 @@ MonoBehaviour:
   waterGO: {fileID: 1903663996}
   visualize: 1
   visualizationMaterial: {fileID: 2100000, guid: 69587462d6eb2d44da2e1b894cbef0e0, type: 2}
+  visualHeight: 0.1
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   areaDuration: 15
   transitionDuration: 10
+  sea: {fileID: 0}
 --- !u!1001 &636211219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1737,6 +1739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tankerBl
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16b7bb16237774c49985352285d5dad8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2103,7 +2109,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   radiusPrefab: {fileID: 8570552270147040349, guid: db7442861f6dbcf4f8f93635d4920688, type: 3}
-  radiusIs2D: 0
 --- !u!114 &2087632959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2156,10 +2161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b477798f95f3fc4429f799539e65e150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  grid: {fileID: 0}
-  obstacle: {fileID: 0}
+  obstaclePrefabs: []
   obstacleCount: 3
-  tileCount: 20
+  minimumDistance: 10
+  radiusRange: {x: 0, y: 0}
 --- !u!1001 &2136043267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2287,6 +2292,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 943052367}
     m_Modifications:
+    - target: {fileID: 525527044121695175, guid: a43cb32c33f21d7fdb06a0c9f59bc3f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1528231396870349388, guid: a43cb32c33f21d7fdb06a0c9f59bc3f8, type: 3}
       propertyPath: m_Name
       value: stones (1)

@@ -32,7 +32,7 @@ public class Galeb : MonoBehaviour, IHittable
 
     public void Hit(float damage)
     {
-        Destroy(gameObject);
+        alive = false;
     }
 
     public void Freeze(float time)
