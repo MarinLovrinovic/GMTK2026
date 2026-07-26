@@ -158,6 +158,10 @@ PrefabInstance:
       propertyPath: turningSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+      propertyPath: deathRotation.x
+      value: -20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2362061816409520558, guid: 321dbfdb81013b3409733a23a986a047, type: 3}

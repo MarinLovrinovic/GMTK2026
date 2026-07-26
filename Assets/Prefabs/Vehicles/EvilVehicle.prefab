@@ -205,6 +205,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+      propertyPath: deathRotation.x
+      value: -70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
       propertyPath: deathPositionOffset.x
       value: -1
       objectReference: {fileID: 0}
