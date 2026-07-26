@@ -66,6 +66,8 @@ public class Bomb : MonoBehaviour, IHittable
         // ensure only one explode call per bomb
         if (explosionStarted) return;
         explosionStarted = true;
+
+        ServiceProvider.Instance.soundManager.playSound(5);
         
         Collider[] hits = Physics.OverlapSphere(transform.position, explosionRadius, hittable);
         foreach (Collider hit in hits)
