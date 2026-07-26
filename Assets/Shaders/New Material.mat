@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: New Material
-  m_Shader: {fileID: -6465566751694194690, guid: b85f31baa6a47e76abf99f4d8a559a10, type: 3}
-  m_Parent: {fileID: -876546973899608171, guid: b85f31baa6a47e76abf99f4d8a559a10, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 80f1c548bf9cc9ca197a9a4550830df4, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: 80f1c548bf9cc9ca197a9a4550830df4, type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,16 +24,29 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseTexture:
+        m_Texture: {fileID: 2800000, guid: eb9f81b1f210db1ef88d281a0aeec55a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseTexture2D:
         m_Texture: {fileID: 2800000, guid: 2035bddba15136f03bf89593fea3850d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DIsplacementTexture:
+        m_Texture: {fileID: 2800000, guid: 299303a0b5d4cf8318005fb7246e6bfc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _AlphaThreshold: 1
+    - _DisplacementStrength: 1
+    - _DisplacementTilingOn: 1
+    - _FoamDistance: 1
     - _QueueControl: 0
     m_Colors:
     - _BaseColor: {r: 0, g: 0.9033843, b: 1, a: 1}
+    - _DisplacementTIling: {r: 2.73, g: 3.19, b: 0, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2823582181535584232

@@ -3527,8 +3527,8 @@
     "m_ObjectId": "2a267cec06d446099690dd00ebe11bbe",
     "m_Title": "Depth Intersect",
     "m_Position": {
-        "x": -746.0,
-        "y": 902.9999389648438
+        "x": -745.9999389648438,
+        "y": 903.0
     }
 }
 
@@ -4073,7 +4073,7 @@
     "m_AllowMaterialOverride": false,
     "m_SurfaceType": 1,
     "m_ZTestMode": 4,
-    "m_ZWriteControl": 0,
+    "m_ZWriteControl": 1,
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
     "m_AlphaClip": false,
@@ -4390,8 +4390,8 @@
     "m_ObjectId": "4615065b259140ad981fb10eccc124e0",
     "m_Title": "Foam",
     "m_Position": {
-        "x": -231.0,
-        "y": 904.9999389648438
+        "x": -230.99998474121095,
+        "y": 905.0
     }
 }
 
@@ -10443,8 +10443,8 @@
     "m_ObjectId": "dacb77e046a84e1c8d3052db43305438",
     "m_Title": "Wave Vertex Displacement",
     "m_Position": {
-        "x": -749.0,
-        "y": -264.9999694824219
+        "x": -748.9999389648438,
+        "y": -265.0
     }
 }
 
@@ -11486,7 +11486,7 @@
     "m_Title": "Base Texture Scrolling",
     "m_Position": {
         "x": -1344.0,
-        "y": 330.0
+        "y": 329.99993896484377
     }
 }
 
