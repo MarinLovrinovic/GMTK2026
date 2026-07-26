@@ -21,8 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: inverse ripple
-  m_Shader: {fileID: -6465566751694194690, guid: ed9d73238213dd733b82378944a0fc8b, type: 3}
-  m_Parent: {fileID: -876546973899608171, guid: ed9d73238213dd733b82378944a0fc8b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: c07c393f5b11d5e6f824e7414fba1c38, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: c07c393f5b11d5e6f824e7414fba1c38, type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
