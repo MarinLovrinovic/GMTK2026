@@ -1089,7 +1089,6 @@ GameObject:
   - component: {fileID: 2087632955}
   - component: {fileID: 2087632956}
   - component: {fileID: 2087632957}
-  - component: {fileID: 2087632964}
   - component: {fileID: 2087632958}
   - component: {fileID: 2087632959}
   - component: {fileID: 2087632960}
@@ -1187,7 +1186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c4b8c51294494980b200b7f727d969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehiclePrefab: {fileID: 6704854262469431661, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+  vehiclePrefabs: []
+  weightedProbabilities: []
   spawnVelMaxAngle: 15
   leaveBoundsPadding: 0
 --- !u!114 &2087632960
@@ -1256,22 +1256,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2087632964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087632954}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a186236f9be34b8893c887dc427c1e34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombs:
-  - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
-  weightedProbabilities:
-  - 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

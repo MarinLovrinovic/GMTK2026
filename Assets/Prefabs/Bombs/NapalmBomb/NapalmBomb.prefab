@@ -121,10 +121,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 737169325944446029}
     m_Modifications:
+    - target: {fileID: 4008845976098015425, guid: c11449c7498fb3440a81dff7c2b882ec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 759c6e402de08784a947209dd3a6566e, type: 3}
     - target: {fileID: 5410180591330759083, guid: c11449c7498fb3440a81dff7c2b882ec, type: 3}
       propertyPath: m_Name
       value: NapalmBombIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 6044947232683313904, guid: c11449c7498fb3440a81dff7c2b882ec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 759c6e402de08784a947209dd3a6566e, type: 3}
+    - target: {fileID: 6703699434256097384, guid: c11449c7498fb3440a81dff7c2b882ec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 759c6e402de08784a947209dd3a6566e, type: 3}
     - target: {fileID: 8462821479274486515, guid: c11449c7498fb3440a81dff7c2b882ec, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
