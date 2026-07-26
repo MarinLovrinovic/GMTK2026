@@ -64,13 +64,14 @@ public class VehicleSpawner : MonoBehaviour
             
         Vehicle newVehicle = Instantiate(vehiclePrefab, newVehiclePosition.xoy(), Quaternion.identity);
 
-        Vector2 newVehicleVelocity = normal.RandomVectorDeviation(80) * newVehicle.speed;
+        Vector2 newVehicleVelocity = normal.RandomVectorDeviation(spawnVelMaxAngle) * newVehicle.speed;
 
         // 40 attempts to find a path which does not collide with any other vehicles,
         // otherwise cancel spawn
         bool collisionOnPath = true;
         for (int i = 0; i < 40; i++)
         {
+            newVehiclePosition -= newVehicleVelocity.normalized * 2f;
             if (!CollisionOnPath(newVehiclePosition, newVehicleVelocity, newVehicle.radius))
             {
                 collisionOnPath = false;
@@ -88,7 +89,7 @@ public class VehicleSpawner : MonoBehaviour
 
         newVehicle.transform.position = newVehiclePosition.xoy();
         newVehicle.velocity = newVehicleVelocity;
-        Debug.DrawRay(newVehiclePosition.xoy(), newVehicleVelocity.xoy().normalized * 6f, Color.purple, 10f);
+        //Debug.DrawRay(newVehiclePosition.xoy(), newVehicleVelocity.xoy().normalized * 6f, Color.purple, 10f);
 
         vehicles.Add(newVehicle);
     }

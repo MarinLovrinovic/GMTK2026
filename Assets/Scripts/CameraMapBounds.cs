@@ -13,6 +13,7 @@ public class CameraMapBounds : MonoBehaviour
 
     [SerializeField] private bool visualize = false;
     [SerializeField] private Material visualizationMaterial;
+    [SerializeField] private float visualHeight = 0.1f;
     private GameObject visualGO = null;
 
 
@@ -92,7 +93,6 @@ public class CameraMapBounds : MonoBehaviour
         MeshRenderer renderer = visualGO.AddComponent<MeshRenderer>();
         filter.mesh = mesh;
         renderer.material = visualizationMaterial;
-        visualGO.transform.position = new Vector3(0f, 0.1f, 0f);
-        //Instantiate(visualGO, new Vector3(0f, 0.1f, 0f), Quaternion.identity, transform);
+        visualGO.transform.position = new Vector3(0f, visualHeight, 0f);
     }
 }

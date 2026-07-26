@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class BombMovement : MonoBehaviour
@@ -6,7 +7,6 @@ public class BombMovement : MonoBehaviour
     [SerializeField] private LayerMask movable;
 
     public GameObject radiusPrefab;
-    [SerializeField] private bool radiusIs2D;
 
     private Bomb carrying;
     private Plane dragPlane;
@@ -48,17 +48,9 @@ public class BombMovement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, movable))
             {
                 Bomb bomb = hit.collider.GetComponent<Bomb>();
-                if (bomb != null && displayedRadius != null)
+                if (bomb != null)// && displayedRadius != null)
                 {
-                    radiusRadius = bomb.getExplosionRadius();
-                    if (radiusIs2D)
-                    {
-                        displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius) * 2;
-                    }
-                    else
-                    {
-                        displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
-                    }
+                    DisplayRadius(bomb);
                 }
 
                 if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -70,32 +62,47 @@ public class BombMovement : MonoBehaviour
                         bombY = bomb.transform.position.y;
                         dragPlane = new Plane(Vector3.up, bombY);
 
-                        Destroy(displayedRadius);
-                        displayedRadius = null;
+                        HideRadius();
                     }
                 }
                 else
                 {
-                    if (bomb != null && displayedRadius == null)
+                    if (bomb != null)// && displayedRadius == null)
                     {
-                        displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
-                        radiusRadius = bomb.getExplosionRadius();
-                        if (radiusIs2D)
-                        {
-                            displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius) * 2;
-                        }
-                        else
-                        {
-                            displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
-                        }
+                        DisplayRadius(bomb);
                     }
                 }
             }
-            else
-            {
-                Destroy(displayedRadius);
-                displayedRadius = null;
-            }
+            else { HideRadius(); }
         }
+    }
+
+
+    void DisplayRadius(Bomb bomb)
+    {
+        if (displayedRadius == null)
+        {
+            displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
+        }
+        radiusRadius = bomb.getExplosionRadius();
+        displayedRadius.transform.localScale = new Vector3(radiusRadius, 1f, radiusRadius);
+
+        // Adjust mask
+        float pixelSize = 2f;
+        float maskSize = 10.24f * 0.185f;
+        float baseDelta = pixelSize - maskSize;
+        float newDelta = (pixelSize * radiusRadius) - (maskSize * radiusRadius);
+        float deltaDelta = newDelta - baseDelta;
+        float newMaskSize = 0.185f + ((deltaDelta / radiusRadius) / 10.24f);
+        displayedRadius.transform.Find("Mask").localScale = new Vector3(newMaskSize, newMaskSize, 1f);
+
+        displayedRadius.transform.position = new Vector3(bomb.transform.position.x, SeaPlane.Instance.transform.position.y, bomb.transform.position.z);
+        displayedRadius.gameObject.SetActive(true);
+    }
+    void HideRadius()
+    {
+        if (displayedRadius != null) { displayedRadius.gameObject.SetActive(false); }
+        //Destroy(displayedRadius);
+        //displayedRadius = null;
     }
 }

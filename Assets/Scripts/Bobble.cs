@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class Bobble : MonoBehaviour
 {
+    [SerializeField] private Transform target;
+
     private void LateUpdate()
     {
         // Height
         float height = SeaPlane.Instance.SampleHeight(transform.position);
-        transform.position = new Vector3(transform.position.x, height, transform.position.z);
+        target.transform.position = new Vector3(transform.position.x, height, transform.position.z);
 
         // Normal
         float e = 0.1f;
@@ -19,6 +21,6 @@ public class Bobble : MonoBehaviour
             2f * e,
             hB - hF
         ).normalized;
-        transform.rotation = Quaternion.LookRotation(transform.forward, normal);
+        target.transform.rotation = Quaternion.LookRotation(target.transform.forward, normal);
     }
 }

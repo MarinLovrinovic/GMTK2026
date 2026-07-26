@@ -12,6 +12,8 @@ public class CameraMovement : MonoBehaviour
 
     private float timer;
 
+    [SerializeField] private Transform sea;
+
     private void Start()
     {
         timer = areaDuration;
@@ -29,8 +31,7 @@ public class CameraMovement : MonoBehaviour
                 if (transitioning)
                 {
                     transitioning = false;
-                    transform.position = new Vector3(targetPosition, transform.position.y, transform.position.z);
-                    CameraMapBounds.UpdateBounds();
+                    Move(targetPosition);
                 }
                 // Transition start
                 else { StartTransition(); }
@@ -39,8 +40,7 @@ public class CameraMovement : MonoBehaviour
             // Mid transition
             if (transitioning)
             {
-                transform.position += Vector3.right * transitionFrameDelta * Time.deltaTime;
-                CameraMapBounds.UpdateBounds();
+                Move(transform.position.x + (transitionFrameDelta * Time.deltaTime));
             }
         }
     }
@@ -49,10 +49,17 @@ public class CameraMovement : MonoBehaviour
     void StartTransition()
     {
         float viewAreaWidth = CameraMapBounds.activeArea.GetWidth();
-        targetPosition = transform.position.x + (viewAreaWidth);
+        targetPosition = transform.position.x + viewAreaWidth;
         transitionFrameDelta = viewAreaWidth / transitionDuration;
-
         transitioning = true;
         timer = transitionDuration;
+    }
+
+
+    void Move(float position)
+    {
+        transform.position = new Vector3(position, transform.position.y, transform.position.z);
+        sea.position = new Vector3(position, sea.position.y, sea.position.z);
+        CameraMapBounds.UpdateBounds();
     }
 }

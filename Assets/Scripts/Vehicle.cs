@@ -27,7 +27,7 @@ public class Vehicle : MonoBehaviour, IHittable
             transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
             
             // Move
-            transform.position += velocity.xoy() * Time.fixedDeltaTime;
+            transform.position += velocity.xoy() * Time.fixedDeltaTime * speed;
         }
     }
 

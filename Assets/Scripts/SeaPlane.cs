@@ -26,8 +26,12 @@ public class SeaPlane : MonoBehaviour
 
     public float SampleHeight(Vector3 position)
     {
-        float height = Mathf.Sin(((position.x) + (position.z)) + (Time.time * waveSpeed)) * waveStrength;
-        //float height = Mathf.Sin((position.x * position.z) + (Time.time * waveSpeed)) * waveStrength;
-        return transform.position.y + (height * transform.localScale.y);
+        //float height = Mathf.Sin(((position.x) + (position.z)) + (Time.time * waveSpeed)) * waveStrength;
+        //return transform.position.y + (height * transform.localScale.y);
+
+        float displacement = ((position.x) + (position.z)) + (Time.time * waveSpeed);
+        displacement = Mathf.Sin(displacement);
+        displacement *= waveStrength;
+        return transform.position.y + displacement;
     }
 }
