@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3885063643661632785}
   - component: {fileID: 946392946394049550}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: SpriteGraphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,8 +27,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3860649984385708280}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3860649984385708280}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: HoverRadius2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -72,7 +72,7 @@ public class BombMovement : MonoBehaviour
                     if (bomb != null && displayedRadius == null)
                     {
                         displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
-                        radiusRadius = bomb.getExplosionRadius() * 2.2f;
+                        radiusRadius = bomb.getExplosionRadius();
                         if (radiusIs2D)
                         {
                             displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius);
