@@ -26,6 +26,16 @@ public class PlaneTrapezoid
     }
 
 
+    public PlaneTrapezoid Translate(Vector2 value)
+    {
+        return new PlaneTrapezoid(
+                points[0] + value,
+                points[1] + value,
+                points[2] + value,
+                points[3] + value,
+                y);
+    }
+
 
     public float GetWidth()
     {
@@ -70,7 +80,7 @@ public class PlaneTrapezoid
         Vector2 closest = orderedPoints[i] + t * edge;
         return Vector2.Distance(point, closest);
     }
-    float MinDistance(Vector2 point)
+    public float MinDistance(Vector2 point)
     {
         float min = Mathf.Infinity;
         for (int i = 0; i < 4; ++i)
@@ -166,7 +176,7 @@ public class PlaneTriangle
         if (padding > 0f) { return MinDistance(point) <= padding; }
         return false;
     }
-    public Vector3 SamplePoint()
+    public Vector3 SamplePoint(float padding = 0f)
     {
         float r1 = Mathf.Sqrt(Random.value);
         float r2 = Random.value;
