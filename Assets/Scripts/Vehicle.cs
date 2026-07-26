@@ -23,7 +23,7 @@ public class Vehicle : MonoBehaviour, IHittable
         if (!isFrozen)
         {
             // Turn
-            velocity = velocity.RotateVector2ByDegrees(turningDirection * turningSpeed * Time.deltaTime);
+            velocity = velocity.RotateVector2ByDegrees(turningDirection * turningSpeed * Time.fixedDeltaTime);
             transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
             
             // Move
@@ -49,6 +49,7 @@ public class Vehicle : MonoBehaviour, IHittable
 
     public void Hit(float damage)
     {
+        ServiceProvider.Instance.gameManager.DamageTaken(1);
         Destroy(gameObject);
     }
 

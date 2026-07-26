@@ -54,7 +54,7 @@ public class VehicleSpawner : MonoBehaviour
         if (timeUntilNextVehicle <= 0)
         {
             SpawnVehicle();
-            timeUntilNextVehicle = 0.3f; // Random.Range(0.2f, 2f);
+            timeUntilNextVehicle = Random.Range(0.2f, 2f);
         }
     }
 
