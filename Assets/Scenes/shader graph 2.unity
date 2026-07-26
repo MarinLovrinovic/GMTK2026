@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1370942500467249712, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370942500467249712, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 51d7a212ff1dd80e39c93786ab0d738a, type: 2}
     - target: {fileID: 4275288123206506063, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.548288
@@ -176,7 +184,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6226895780239100987, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 609355837293801189, guid: 321dbfdb81013b3409733a23a986a047, type: 3}
