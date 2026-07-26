@@ -495,20 +495,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "1edec9cc019e4dba8f62bdac66991305"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "3aefecf8b9c04e7a8a5ec931458281ff"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "203b949abadd4e798ea6d8524272eedb"
                 },
                 "m_SlotId": 3
@@ -3196,8 +3182,8 @@
     "m_ObjectId": "21b1b8fa109841e49f1a92db5671798c",
     "m_Title": "Displacement Texture UV Calculations",
     "m_Position": {
-        "x": -3177.999755859375,
-        "y": 148.99998474121095
+        "x": -3178.400146484375,
+        "y": 147.20001220703126
     }
 }
 
@@ -3527,8 +3513,8 @@
     "m_ObjectId": "2a267cec06d446099690dd00ebe11bbe",
     "m_Title": "Depth Intersect",
     "m_Position": {
-        "x": -746.0,
-        "y": 902.9999389648438
+        "x": -746.3999633789063,
+        "y": 901.60009765625
     }
 }
 
@@ -4071,7 +4057,7 @@
         "m_Id": "57d42daeee504ae3896abc88faff5f55"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
@@ -4390,8 +4376,8 @@
     "m_ObjectId": "4615065b259140ad981fb10eccc124e0",
     "m_Title": "Foam",
     "m_Position": {
-        "x": -231.0,
-        "y": 904.9999389648438
+        "x": -231.20001220703126,
+        "y": 903.2000122070313
     }
 }
 
@@ -10443,8 +10429,8 @@
     "m_ObjectId": "dacb77e046a84e1c8d3052db43305438",
     "m_Title": "Wave Vertex Displacement",
     "m_Position": {
-        "x": -749.0,
-        "y": -264.9999694824219
+        "x": -749.60009765625,
+        "y": -266.39996337890627
     }
 }
 
@@ -11485,8 +11471,8 @@
     "m_ObjectId": "f89e84f9026a40059f4428e319312984",
     "m_Title": "Base Texture Scrolling",
     "m_Position": {
-        "x": -1344.0,
-        "y": 330.0
+        "x": -1344.0001220703125,
+        "y": 328.00006103515627
     }
 }
 
