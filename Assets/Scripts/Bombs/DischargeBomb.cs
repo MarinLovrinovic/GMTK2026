@@ -5,5 +5,6 @@ public class DischargeBomb : Bomb
     protected override void perTickLogic()
     {
         explosionRadius--;
+        UpdateDisplayRadius(explosionRadius);
     }
 }

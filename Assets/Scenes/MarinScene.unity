@@ -969,7 +969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1903663997
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1089,6 +1089,7 @@ GameObject:
   - component: {fileID: 2087632955}
   - component: {fileID: 2087632956}
   - component: {fileID: 2087632957}
+  - component: {fileID: 2087632964}
   - component: {fileID: 2087632958}
   - component: {fileID: 2087632959}
   - component: {fileID: 2087632960}
@@ -1145,7 +1146,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombs:
   - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
+  - {fileID: 6798569576421909068, guid: e740ea001d9d825429e3449b7b1fb7fc, type: 3}
+  - {fileID: 3093678186698877201, guid: c2bc85a0a0977dc429e6bd5e75060c1f, type: 3}
+  - {fileID: 8565096604316749435, guid: 8d4206ff4c4867347aec85c7bfddd67b, type: 3}
+  - {fileID: 4169599846331921678, guid: 3f1bdf0e927b4c94e97d64c9080449e8, type: 3}
+  - {fileID: 6670937565897870866, guid: 1fe03aa03dd6a2747beb179b83f341c8, type: 3}
+  - {fileID: 2832341686369346766, guid: 6130dc6eac1b0c54b8945724ecd5a694, type: 3}
   weightedProbabilities:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   - 1
 --- !u!114 &2087632958
 MonoBehaviour:
@@ -1162,8 +1175,6 @@ MonoBehaviour:
   movable:
     serializedVersion: 2
     m_Bits: 64
-  radiusPrefab: {fileID: 8570552270147040349, guid: db7442861f6dbcf4f8f93635d4920688, type: 3}
-  radiusIs2D: 1
 --- !u!114 &2087632959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1239,6 +1250,28 @@ MonoBehaviour:
   healthPointIndicatorPrefab: {fileID: 5705257212170436511, guid: a566976f78831f848a6297efe46d6858, type: 3}
   indicatorHeightFull: 20
   indicatorHeightEmpty: 5
+  regenerationAnimationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2087632964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087632954}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a186236f9be34b8893c887dc427c1e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bombs:
+  - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
+  weightedProbabilities:
+  - 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

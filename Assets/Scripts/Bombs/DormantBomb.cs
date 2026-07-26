@@ -6,6 +6,9 @@ public class DormantBomb : Bomb
 
     protected override void preExplosionLogic(bool isSelfCaused)
     {
-        if (isSelfCaused) explosionRadius = finalExplosionRadius;
+        if (isSelfCaused)
+        {
+            explosionRadius = finalExplosionRadius;
+        }
     }
 }

@@ -1,5 +1,6 @@
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour, IHittable
@@ -16,6 +17,32 @@ public class Bomb : MonoBehaviour, IHittable
     [SerializeField] protected TMP_Text countdownText;
     [SerializeField] protected int minTime;
     [SerializeField] protected int maxTime;
+    [SerializeField] protected bool alwaysShowRadius;
+    [SerializeField] protected LineRenderer radiusDisplay;
+    
+    public void SetRadiusDisplay(bool value)
+    {
+        if (!radiusDisplay) return;
+        if (!alwaysShowRadius)
+        {
+            radiusDisplay.enabled = value;
+        }
+    }
+
+    protected void UpdateDisplayRadius(float radius)
+    {
+        if (!radiusDisplay) return;
+        int segmentCount = 36;
+        float angleIncrement = 360f / segmentCount;
+        Vector3[] points = new Vector3[segmentCount + 1];
+        for (int i = 0; i <= segmentCount; i++)
+        {
+            float angle = i * angleIncrement;
+            points[i] = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad) * radius, 0.2f, Mathf.Sin(angle * Mathf.Deg2Rad) * radius);
+        }
+        radiusDisplay.positionCount = points.Length;
+        radiusDisplay.SetPositions(points);
+    }
 
     protected int timeUntilExplosion = 5;
     protected bool explosionStarted = false;
@@ -23,6 +50,11 @@ public class Bomb : MonoBehaviour, IHittable
 
     private void Start()
     {
+        if (radiusDisplay)
+        {
+            radiusDisplay.enabled = alwaysShowRadius;
+            UpdateDisplayRadius(explosionRadius);    
+        }
         timeUntilExplosion = Random.Range(minTime, maxTime);
         countdownText.text = (timeUntilExplosion).ToString();
         imageControl(true, false, false);
