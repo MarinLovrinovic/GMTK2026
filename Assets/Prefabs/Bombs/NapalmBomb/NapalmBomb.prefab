@@ -112,7 +112,7 @@ MonoBehaviour:
   alwaysShowRadius: 0
   radiusDisplay: {fileID: 6287976244046941347}
   napalmFieldPrefab: {fileID: 4225023955700259393, guid: 800005bdf013bac4595637036de992ca, type: 3}
-  napalmFieldLifetime: 4
+  napalmFieldLifetime: 8
   napalmFieldScale: {x: 3, y: 3, z: 3}
 --- !u!1001 &3772143107166203532
 PrefabInstance:

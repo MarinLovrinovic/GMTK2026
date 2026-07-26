@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         {
             RectTransform healthPointIndicator = Instantiate(healthPointIndicatorPrefab, healthIndicator);
             healthPointIndicator.anchoredPosition = new Vector2(10 + i * 60, -10);
+            healthPointIndicator.gameObject.SetActive(true);
             healthPointIndicators.Add(healthPointIndicator);
             healthPointIndicatorTargetHeights.Add(indicatorHeightFull);
         }
