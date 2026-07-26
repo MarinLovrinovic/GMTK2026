@@ -5,21 +5,16 @@ public class BombMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask movable;
 
-    public GameObject radiusPrefab;
-    [SerializeField] private bool radiusIs2D;
-
+    private Bomb pointingTo;
     private Bomb carrying;
     private Plane dragPlane;
     private float bombY;
-    private GameObject displayedRadius;
-    private float radiusRadius;
 
     private void Start()
     {
         carrying = null;
         dragPlane = new Plane();
         bombY = 0.0f;
-        displayedRadius = null;
     }
 
     private void Update()
@@ -48,17 +43,10 @@ public class BombMovement : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, movable))
             {
                 Bomb bomb = hit.collider.GetComponent<Bomb>();
-                if (bomb != null && displayedRadius != null)
+                if (bomb != null)
                 {
-                    radiusRadius = bomb.getExplosionRadius();
-                    if (radiusIs2D)
-                    {
-                        displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius) * 2;
-                    }
-                    else
-                    {
-                        displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
-                    }
+                    pointingTo = bomb;
+                    pointingTo.SetRadiusDisplay(true);
                 }
 
                 if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -69,32 +57,13 @@ public class BombMovement : MonoBehaviour
                         carrying = bomb;
                         bombY = bomb.transform.position.y;
                         dragPlane = new Plane(Vector3.up, bombY);
-
-                        Destroy(displayedRadius);
-                        displayedRadius = null;
-                    }
-                }
-                else
-                {
-                    if (bomb != null && displayedRadius == null)
-                    {
-                        displayedRadius = Instantiate(radiusPrefab, bomb.transform.position, Quaternion.identity);
-                        radiusRadius = bomb.getExplosionRadius();
-                        if (radiusIs2D)
-                        {
-                            displayedRadius.transform.GetChild(0).GetComponent<SpriteRenderer>().size = new Vector2(radiusRadius, radiusRadius) * 2;
-                        }
-                        else
-                        {
-                            displayedRadius.transform.localScale = new Vector3(radiusRadius, radiusRadius, radiusRadius);
-                        }
                     }
                 }
             }
-            else
+            else if (pointingTo)
             {
-                Destroy(displayedRadius);
-                displayedRadius = null;
+                pointingTo.SetRadiusDisplay(false);
+                pointingTo = null;    
             }
         }
     }
