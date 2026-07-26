@@ -49,7 +49,7 @@ public class Bomb : MonoBehaviour, IHittable
 
         if (timeUntilExplosion <= 0)
         {
-            preExplosionLogic();
+            preExplosionLogic(true);
             Explode(true);
         }
     }
@@ -74,8 +74,9 @@ public class Bomb : MonoBehaviour, IHittable
             if (hittable != null && !ReferenceEquals(hittable, this)) explosionLogic(hittable, isSelfCaused);
         }
         GameObject effect = Instantiate(explosionFX, transform.position, Quaternion.identity);
-        float scale = 2.2f * explosionRadius;
-        effect.transform.localScale = new Vector3(scale, scale, scale);
+        effect.GetComponent<Explosion>().sizeAndDestroy(explosionRadius);
+        //float scale = 2.2f * explosionRadius;
+        //effect.transform.localScale = new Vector3(scale, scale, scale);
         
         Destroy(gameObject);
     }
@@ -89,7 +90,7 @@ public class Bomb : MonoBehaviour, IHittable
 
     protected virtual void perTickLogic() { }
 
-    protected virtual void preExplosionLogic() { }
+    protected virtual void preExplosionLogic(bool isSelfCaused) { }
 
     protected virtual void explosionLogic(IHittable hittable, bool isSelfCaused)
     {
@@ -109,6 +110,7 @@ public class Bomb : MonoBehaviour, IHittable
 
     public void Hit(float damage)
     {
+        preExplosionLogic(false);
         Explode(false);
     }
 

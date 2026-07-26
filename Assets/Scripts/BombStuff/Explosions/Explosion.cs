@@ -3,21 +3,35 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particleSystem;
-    [NonSerialized] public float explosionRadius;
-    void Start()
+    [SerializeField] private float lengthInTime;
+
+    private ParticleSystem particleSystem;
+    private float radius;
+
+    private void Awake()
     {
-        doEffects();
-        Destroy(gameObject, 1);
+        particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
     protected virtual void doEffects()
     {
-        // if (particleSystem)
-        // {
-        //     ParticleSystem.ShapeModule shape = particleSystem.shape;
-        //     particleSystem.shape = shape;
-        //
-        // }
+        if (particleSystem)
+        {
+            var shapeModule = particleSystem.shape;
+            var emissionModule = particleSystem.emission;
+            var mainModule = particleSystem.main;
+
+            shapeModule.radius = radius;
+            emissionModule.rateOverTimeMultiplier *= radius * radius;
+            mainModule.startLifetimeMultiplier *= radius * radius;
+            //mainModule.startSpeedMultiplier *= radius * radius;
+        }
+    }
+
+    public void sizeAndDestroy(float explosionRadius)
+    {
+        radius = explosionRadius;
+        doEffects();
+        Destroy(gameObject, lengthInTime);
     }
 }
