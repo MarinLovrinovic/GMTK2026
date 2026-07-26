@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoatWakesGraph
-  m_Shader: {fileID: -6465566751694194690, guid: f29f8ae3791c7324aad630897aa99e4e, type: 3}
-  m_Parent: {fileID: 0}
+  m_Name: Ripple test
+  m_Shader: {fileID: -6465566751694194690, guid: 0e118f6c15bf835239927edcbb54a664, type: 3}
+  m_Parent: {fileID: -876546973899608171, guid: 0e118f6c15bf835239927edcbb54a664, type: 3}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,34 +24,19 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Wake_Mask:
-        m_Texture: {fileID: 2800000, guid: 0b94c253a6cc47440bff1d3e96fbdb5d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
+    - _RippleTex:
+        m_Texture: {fileID: 2800000, guid: f01862204e3754b1db3eae3fd317c949, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _QueueControl: 0
-    - _QueueOffset: 0
-    - _Wake_Intensity: 1
-    - _Wave_Speed: -1
-    - _Wave_Strength: 0.2
-    m_Colors:
-    - _Wake_Color: {r: 0.92156863, g: 0.92156863, b: 1, a: 1}
+    - _RippleDisplacementStrength: 0.5
+    - _WaveSpeed: -1
+    m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &644685190697148560
+--- !u!114 &9219190360827224079
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,5 +47,5 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  m_EditorClassIdentifier: 
   version: 10

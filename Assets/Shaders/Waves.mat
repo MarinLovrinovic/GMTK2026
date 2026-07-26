@@ -32,6 +32,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 299303a0b5d4cf8318005fb7246e6bfc, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RippleTexture:
+        m_Texture: {fileID: 8400000, guid: e51c0c1918b4ff1f68876164ad6bcd34, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _DisplacementStrength: 1
@@ -39,12 +43,13 @@ Material:
     - _FoamDistance: 1
     - _FoamVelocity: 0.01
     - _QueueControl: 0
+    - _RippleDisplacementStrenght: 0.5
     - _Wave_Speed: -1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.6784314, b: 1, a: 0.8509804}
+    - _BaseColor: {r: 0, g: 0.82593, b: 1, a: 1}
     - _DisplacementTIling: {r: 2.73, g: 3.19, b: 0, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TextureTiling: {r: 10, g: 10, b: 0, a: 0}
+    - _TextureTiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5106211467666478048
