@@ -1,12 +1,11 @@
-using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float areaDuration;
     [SerializeField] private float transitionDuration;
-    private bool transitioning = false;
+    public bool transitioning { get; private set; }  = false;
     private float targetPosition = 0f;
     private float transitionFrameDelta = 0f;
 
@@ -53,6 +52,14 @@ public class CameraMovement : MonoBehaviour
         transitionFrameDelta = viewAreaWidth / transitionDuration;
         transitioning = true;
         timer = transitionDuration;
+
+        // Fill new area with obstacles
+        PlaneTrapezoid newArea = CameraMapBounds.activeArea.Translate(new Vector2(viewAreaWidth, 0f));
+        FindAnyObjectByType<ObstacleSpawner>().FillArea(newArea);
+
+        // Add new bomb into the mix
+        BombSpawner bombSpawner = FindAnyObjectByType<BombSpawner>();
+        if (bombSpawner.addNewOnNextArea) { bombSpawner.AddNewBomb(); }
     }
 
 

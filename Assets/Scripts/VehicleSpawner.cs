@@ -166,6 +166,12 @@ public class VehicleSpawner : MonoBehaviour
                 position, velocity, radius,
                 otherVehicle.Position, otherVehicle.velocity, otherVehicle.radius);
         }
+        foreach (Obstacle obstacle in GetComponent<ObstacleSpawner>().obstacles)
+        {
+            anyCollisions |= MathHelper.MovingCirclesIntersect(
+                position, velocity, radius,
+                obstacle.Position, Vector2.zero, obstacle.radius);
+        }
 
         return anyCollisions;
     }

@@ -393,8 +393,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941d17e6e79409047a5418bdd256e650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
-  areaDuration: 30
-  transitionDuration: 15
+  areaDuration: 3
+  transitionDuration: 5
   sea: {fileID: 364528487}
 --- !u!1 &902196184
 GameObject:
@@ -896,6 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a186236f9be34b8893c887dc427c1e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customSet: 1
   bombs:
   - {fileID: 8030125778813316142, guid: 9c967be2ce7b46542bd72f17673e9696, type: 3}
   - {fileID: 6798569576421909068, guid: e740ea001d9d825429e3449b7b1fb7fc, type: 3}
@@ -905,8 +906,8 @@ MonoBehaviour:
   - {fileID: 6670937565897870866, guid: 1fe03aa03dd6a2747beb179b83f341c8, type: 3}
   - {fileID: 2832341686369346766, guid: 6130dc6eac1b0c54b8945724ecd5a694, type: 3}
   weightedProbabilities:
-  - 0
   - 1
+  - 0
   - 0
   - 0
   - 0
@@ -980,10 +981,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b477798f95f3fc4429f799539e65e150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleSpawner
-  grid: {fileID: 0}
-  obstacle: {fileID: 0}
+  obstaclePrefabs:
+  - {fileID: 8020263202296306995, guid: 42b2443f1801f0f4eac1823320c5d462, type: 3}
+  - {fileID: 218970909367691597, guid: 733d30dfb18177c4b828cfbd94cdc950, type: 3}
   obstacleCount: 3
-  tileCount: 20
+  minimumDistance: 2
+  radiusRange: {x: 3, y: 5}
 --- !u!114 &2087632963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,7 +1002,7 @@ MonoBehaviour:
   galebPrefab: {fileID: -571054190181018013, guid: 0cfb35d654a55cd4f8e8f7472bc6110b, type: 3}
   height: 2
   scaleRange: {x: 0.4, y: 1}
-  spawnTimeRange: {x: 1, y: 2}
+  spawnTimeRange: {x: 1, y: 6}
   speedRange: {x: 1.75, y: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
