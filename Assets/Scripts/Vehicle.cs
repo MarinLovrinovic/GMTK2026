@@ -9,25 +9,37 @@ public class Vehicle : MonoBehaviour, IHittable
     public float speed = 1;
     public float turningSpeed = 5; // degrees per second
     public float turningDirection = 0; // -1 is left, 1 is right, 0 is no turn
+    public Vector3 deathPositionOffset;
+    public Vector3 deathRotation;
+    public float deathTime;
     public Vector2 Position => transform.position.xz();
 
     private bool isFrozen;
+    private bool isDying;
 
     private void Start()
     {
         isFrozen = false;
+        isDying = false;
     }
 
     private void FixedUpdate()
     {
-        if (!isFrozen)
+        if (isDying)
         {
-            // Turn
-            velocity = velocity.RotateVector2ByDegrees(turningDirection * turningSpeed * Time.fixedDeltaTime);
-            transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
-            
-            // Move
-            transform.position += velocity.xoy() * Time.fixedDeltaTime;
+            transform.position -= Vector3.up * velocity.magnitude * Time.fixedDeltaTime;
+        }
+        else
+        {
+            if (!isFrozen)
+            {
+                // Turn
+                velocity = velocity.RotateVector2ByDegrees(turningDirection * turningSpeed * Time.fixedDeltaTime);
+                transform.LookAt(transform.position + velocity.xoy(), Vector3.up);
+
+                // Move
+                transform.position += velocity.xoy() * Time.fixedDeltaTime;
+            }
         }
     }
 
@@ -47,10 +59,21 @@ public class Vehicle : MonoBehaviour, IHittable
         else { transform.Find("Frozen").Find("IceCube").gameObject.SetActive(false); }
     }
 
+    private IEnumerator waitHit()
+    {
+        transform.localRotation = Quaternion.Euler(deathRotation);
+        transform.localPosition += deathPositionOffset;
+        isFrozen = true;
+        yield return new WaitForSecondsRealtime(deathTime);
+        isDying = true;
+        yield return new WaitForSecondsRealtime(deathTime);
+        Destroy(gameObject);
+    }
+
     public void Hit(float damage)
     {
         ServiceProvider.Instance.gameManager.DamageTaken(1);
-        Destroy(gameObject);
+        StartCoroutine(waitHit());
     }
 
     public void Freeze(float time)

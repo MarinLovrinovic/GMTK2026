@@ -101,6 +101,8 @@ MonoBehaviour:
   speed: 1
   turningSpeed: 30
   turningDirection: 0
+  deathRotation: {x: -90, y: 0, z: 0}
+  deathTime: 1
 --- !u!1 &1906750645203726794
 GameObject:
   m_ObjectHideFlags: 0
