@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Waves
+  m_Name: Waves 1
   m_Shader: {fileID: -6465566751694194690, guid: 80f1c548bf9cc9ca197a9a4550830df4, type: 3}
   m_Parent: {fileID: -876546973899608171, guid: 80f1c548bf9cc9ca197a9a4550830df4, type: 3}
   m_ModifiedSerializedProperties: 0
@@ -42,16 +42,15 @@ Material:
     - _DisplacementStrength: 1
     - _DisplacementTilingOn: 1
     - _FoamDistance: 1
-    - _FoamScale: 75
     - _FoamVelocity: 0.01
     - _QueueControl: 0
     - _RippleDisplacementStrenght: 0.5
     - _Wave_Speed: -1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.71723115, b: 1, a: 1}
-    - _DisplacementTIling: {r: 0.4, g: 0.6, b: 0, a: 0}
+    - _BaseColor: {r: 0, g: 0.82593, b: 1, a: 1}
+    - _DisplacementTIling: {r: 0.8, g: 1.2, b: 0, a: 0}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TextureTiling: {r: -0.15, g: 0.15, b: 0, a: 0}
+    - _TextureTiling: {r: 0.25, g: 0.25, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5106211467666478048
