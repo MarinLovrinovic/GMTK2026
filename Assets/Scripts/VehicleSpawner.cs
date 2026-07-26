@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class VehicleSpawner : MonoBehaviour
 {
-    [SerializeField] private Vehicle vehiclePrefab;
+    [SerializeField] private Vehicle[] vehiclePrefabs;
+    [SerializeField] private float[] weightedProbabilities;
     private float timeUntilNextVehicle = 1;
     private List<Vehicle> vehicles = new();
 
@@ -61,8 +62,9 @@ public class VehicleSpawner : MonoBehaviour
     private void SpawnVehicle()
     {
         Vector2 newVehiclePosition = GetInitialVehicleLocation(out Vector2 normal);
-            
-        Vehicle newVehicle = Instantiate(vehiclePrefab, newVehiclePosition.xoy(), Quaternion.identity);
+
+        Vehicle vehicleType = MathHelper.WeightedRandomFromDistributionArray<Vehicle>(vehiclePrefabs, weightedProbabilities);
+        Vehicle newVehicle = Instantiate(vehicleType, newVehiclePosition.xoy(), Quaternion.identity);
 
         Vector2 newVehicleVelocity = normal.RandomVectorDeviation(80) * newVehicle.speed;
 
