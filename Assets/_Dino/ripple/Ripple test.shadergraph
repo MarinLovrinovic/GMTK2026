@@ -2782,7 +2782,7 @@
     "m_Title": "Ripple Vertex Displacement",
     "m_Position": {
         "x": -1259.0,
-        "y": -79.0
+        "y": -78.99984741210938
     }
 }
 
@@ -2793,7 +2793,7 @@
     "m_Title": "Wave Vertex Displacement",
     "m_Position": {
         "x": -2472.0,
-        "y": 403.9999694824219
+        "y": 404.0001220703125
     }
 }
 
@@ -3339,7 +3339,7 @@
     "m_Title": "Wave Vertex Displacement",
     "m_Position": {
         "x": -1977.0,
-        "y": -830.0
+        "y": -829.9998779296875
     }
 }
 
